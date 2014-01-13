@@ -1,0 +1,8 @@
+<% if resource.errors.count == 0 %>
+        $('#form-place').foundation('reveal', 'close');
+        window.location.reload();
+        $("#form-place").empty();
+<% else %>
+        $("#form-place").empty();
+        $("#form-place").append('<%= j render 'devise/registrations/new' %>');
+<% end %>
