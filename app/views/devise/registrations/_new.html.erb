@@ -1,13 +1,29 @@
-<div class="authform">
-<h2>Sign up</h2>
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:role => 'form' }, :remote => true) do |f| %>
+<div style="background: light-gray; padding: 10px">
+  <h3> Welcome </h3>
+
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:role => 'form' }, :remote => true) do |f| %>
+
+
   <%= f.error_notification %>
   <%= display_base_errors resource %>
   <%= f.input :name, :autofocus => true %>
   <%= f.input :email, :required => true %>
   <%= f.input :password, :required => true %>
   <%= f.input :password_confirmation, :required => true %>
-  <%= f.button :submit, 'Sign up', :class => 'btn-primary' %>
-<% end %>
-<%= render "devise/shared/links" %>
+  <%= f.submit 'Sign up', :class => 'button' %>
+
+  <% end %>
+
 </div>
+<div style="background: white; padding: 10px">
+
+  <%- if devise_mapping.omniauthable? %>
+    <p> Save time to sign up by using your Facebook account </p>
+
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= link_to image_tag("#{provider.to_s.titleize}.png"), omniauth_authorize_path(resource_name, provider) %><br />
+    <% end -%>
+  <% end -%>
+</div>
+
+

@@ -17,8 +17,52 @@
     <main role="main">
        <%= render 'layouts/messages' %>
        <%= yield %>
-       <div id="form-place" class="reveal-modal" data-reveal>
+       <div id="form-place" class="reveal-modal small" data-reveal>
        </div>
+
+
+<div class="row" data-match-height>
+  <div data-height-watch class="small-3 columns" style="background: pink;">
+    <p>Some text...</p>
+  </div>
+  <div data-height-watch class="small-6 columns" style="background: orange;">
+    <p>Some text...</p>
+    <img src="http://placehold.it/300x300">
+  </div>
+  <div data-height-watch class="small-3 columns" style="background: lightblue;">
+    <p>Some text...</p>
+  </div>
+</div>
+
+<br>
+
+<div class="row" data-match-height>
+  <div class="small-12">
+    <ul class="small-block-grid-3">
+      <li data-height-watch style="background: pink; height: 100px;">
+        <p>Some text...</p>
+      </li>
+      <li data-height-watch style="background: orange; height: 120px;">
+        <p>Some text...</p>
+      </li>
+      <li data-height-watch style="background: lightblue; height: 140px;">
+        <p>Some text...</p>
+      </li>
+      <li data-height-watch style="background: purple; height: 150px;">
+        <p>Some text...</p>
+      </li>
+      <li data-height-watch style="background: gray; height: 100px;">
+        <p>Some text...</p>
+      </li>
+      <li data-height-watch style="background: pink; height: 200px;">
+        <p>Some text...</p>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
     </main>
     <%# Foundation 5 won't work when application.js is included in HEAD %>
     <%= javascript_include_tag "application" %>

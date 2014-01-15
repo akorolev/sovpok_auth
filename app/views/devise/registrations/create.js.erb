@@ -2,6 +2,7 @@
         $('#form-place').foundation('reveal', 'close');
         window.location.reload();
         $("#form-place").empty();
+        $("#form-place").append('<p> Successfully registerred</p>');
 <% else %>
         $("#form-place").empty();
         $("#form-place").append('<%= j render 'devise/registrations/new' %>');
