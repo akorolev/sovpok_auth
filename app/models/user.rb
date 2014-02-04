@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
                          password:Devise.friendly_token[0,20]
                          )
     end
+    Profile.create(:user_id => user.id)
     user
   end
 end

@@ -26,6 +26,7 @@ class RegistrationsController < Devise::RegistrationsController
         expire_data_after_sign_in!
         location = after_inactive_sign_up_path_for(resource)
       end
+      Profile.create(:user_id => resource.id)
     else
       clean_up_passwords resource
       status = :unprocessable_entity
