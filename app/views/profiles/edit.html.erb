@@ -1,0 +1,8 @@
+<h1>Profiles#edit</h1>
+<p>Find me in app/views/profiles/edit.html.erb</p>
+<%= simple_form_for @profile, :url => { :action => "update" } do |f| %>
+  <%= f.file_field :avatar %>
+  <%= f.input_field :location %>
+  <%= f.input :birthday, as: :date %>
+  <%= f.submit 'Save' %>
+<% end %>
