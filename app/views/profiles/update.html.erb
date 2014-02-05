@@ -1,8 +1,0 @@
-<h1>Profiles#update</h1>
-
-<%= simple_form_for @profile do |f| %>
-  <%= form.file_field :avatar %>
-  <%= f.input_field :location %>
-  <%= f.input :birthday, as: :date %>
-  <%= f.submit 'Save' %>
-<% end %>
