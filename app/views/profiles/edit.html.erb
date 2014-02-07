@@ -1,7 +1,14 @@
 <h1>Profile</h1>
 <%= simple_form_for @profile do |f| %>
-  <%= f.file_field :avatar %>
-  <%= f.input_field :location %>
-  <%= f.input :birthday, as: :date %>
-  <%= f.submit 'Save' %>
+
+<div class="row" data-match-height>
+  <div class="large-8 columns" >
+    <%= f.file_field :avatar %>
+    <%= f.submit 'Save' %>
+  </div>
+  <div class="large-4 columns" >
+    <%= image_tag @profile.avatar.url(:medium), id: "previewHolder", height: '200', width: '200', alt: 'avatar', align: "right" %>
+  </div>
+</div>
+
 <% end %>
