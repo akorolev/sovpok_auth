@@ -4,5 +4,5 @@
 <% end %>
 
 <% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user, :remote => current_user.nil? %></p>
+  <p>User: <%=link_to user.email, user, :remote => current_user.nil? %></p>
 <% end %>
