@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.maskedinput
 //= require jquery_ujs
 // Note: Foundation 5 won't work with turbolinks
 //= require foundation

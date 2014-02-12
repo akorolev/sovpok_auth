@@ -81,14 +81,14 @@ SimpleForm.setup do |config|
     # Calculates readonly automatically from readonly attributes
     b.optional :readonly
 
-    b.wrapper :tag => 'div', :class => 'raw' do |ba|
+    b.wrapper :tag => 'div', :class => 'raw collapse' do |ba|
     ## Inputs
-      ba.use :label, wrap_with: { tag: :div, class: :'small-4 columns'}
-      ba.use :input, wrap_with: { tag: :div, class: :'small-8 columns'}
+      ba.wrapper :tag => 'div', :class => 'small-3 columns' do |baa|
+        baa.use :label, wrap_with: { tag: :span, class: :'prefix'}
+      end
+      ba.use :input , wrap_with: { tag: :div, class: :'small-9 columns'}
       ba.use :hint,  wrap_with: { tag: :span, class: :hint }
       ba.use :error, wrap_with: { tag: :span, class: 'small-8 columns error' }
-
-#      ba.use :error, wrap_with: { tag: :span, class: 'small-8 columns error' }
     end
   end
 
