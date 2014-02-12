@@ -1,14 +1,20 @@
 <%= simple_form_for @profile do |f| %>
+  <h1>Profile</h1>
 
-<div class="row" data-match-height>
-<h1>Profile</h1>
+<div class="row">
+    <%= f.input :name, :wrapper => :label_hor %>
+  
+    <%= f.input :about, as: :text, placeholder: 'Tell us about yourself',:wrapper => :label_hor %>
+    <%= f.input :birthday, as: :date, start_year: Date.today.year - 60,
+                              end_year: Date.today.year - 12, :wrapper => :label_hor %>
+<div class="row">
   <div class="large-8 columns" >
     <%= f.file_field :avatar %>
-    <%= f.submit 'Save' %>
   </div>
   <div class="large-4 columns" >
     <%= image_tag @profile.avatar.url(:medium), id: "previewHolder", height: '200', width: '200', alt: 'avatar', align: "right" %>
   </div>
 </div>
+  <%= f.submit 'Save' %>
 
 <% end %>

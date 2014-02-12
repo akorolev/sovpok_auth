@@ -12,14 +12,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    debugger
     build_resource(sign_up_params)
     status = :created;
-	location = "";
 
-    if params["profile"]["name"].empty?
-    end
-    
     if resource.save
       yield resource if block_given?
       if resource.active_for_authentication?
@@ -31,8 +26,6 @@ class RegistrationsController < Devise::RegistrationsController
         expire_data_after_sign_in!
         location = after_inactive_sign_up_path_for(resource)
       end
-	   puts YAML::dump(resource.profile.inspect)
-#      Profile.create(:user_id => resource.id, :name => params["profile"]["name"])
     else
       clean_up_passwords resource
       status = :unprocessable_entity
@@ -44,14 +37,14 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update_sanitized_params
-    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit( :email, :password, :password_confirmation, profile_attributes: [:id, :name, :user_id])}
+    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit( :email, :password, :password_confirmation)}
     devise_parameter_sanitizer.for(:account_update) {|u| u.permit( :email, :password, :password_confirmation, :current_password)}
   end
 
   private
 
   def sign_up_params
-    allow = [:email, :password, :password_confirmation, profile: [:id, :name, :user_id]]
-    params.require(resource_name).permit(allow)
+    allow = [:email, :password, :password_confirmation, profile_attributes: [:id, :name, :user_id]]
+    params.require(:user).permit(allow)
   end
 end

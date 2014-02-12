@@ -7,9 +7,8 @@
   <%#= f.error_notification %>
   <%#= display_base_errors resource %>
 
-  <%= simple_fields_for :profile do |profile_fields| %>
+  <%= f.simple_fields_for :profile do |profile_fields| %>
     <%= profile_fields.input :name , :autofocus => true, :required => true %>
-    <%= profile_fields.input :user_id, input_html: {value: resource.id}, as: :hidden %>
   <% end %>
   <%= f.input :email, :required => true %>
   <%= f.input :password, :required => true %>
