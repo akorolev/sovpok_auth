@@ -11,7 +11,7 @@ readURL = (input) ->
 
     reader.readAsDataURL input.files[0]
   return
+
 $("#profile_avatar").change ->
-  console.log "get here"
   readURL this
   return

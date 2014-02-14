@@ -81,14 +81,16 @@ SimpleForm.setup do |config|
     # Calculates readonly automatically from readonly attributes
     b.optional :readonly
 
-    b.wrapper :tag => 'div', :class => 'raw collapse' do |ba|
+    b.wrapper :tag => 'div', :class => 'row' do |ba|
     ## Inputs
       ba.wrapper :tag => 'div', :class => 'small-3 columns' do |baa|
-        baa.use :label, wrap_with: { tag: :span, class: :'prefix'}
+        baa.use :label
       end
-      ba.use :input , wrap_with: { tag: :div, class: :'small-9 columns'}
-      ba.use :hint,  wrap_with: { tag: :span, class: :hint }
-      ba.use :error, wrap_with: { tag: :span, class: 'small-8 columns error' }
+      ba.wrapper :tag => 'div', :class => 'small-9 columns' do |baa|
+        baa.use :input
+        baa.use :hint,  wrap_with: { tag: :span, class: :hint }
+        baa.use :error, wrap_with: { tag: :span, class: 'error' }
+      end
     end
   end
 
@@ -142,7 +144,7 @@ SimpleForm.setup do |config|
   # config.label_text = lambda { |label, required| "#{required} #{label}" }
 
   # You can define the class to use on all labels. Default is nil.
-  config.label_class = 'control-label'
+  config.label_class = 'control-label right inline'
 
   # You can define the class to use on all forms. Default is simple_form.
   # config.form_class = :simple_form

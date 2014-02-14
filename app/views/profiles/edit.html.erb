@@ -1,11 +1,16 @@
 <%= simple_form_for @profile do |f| %>
   <%= field_set_tag 'Your details' do %>
-    <%= f.input :name, :wrapper => :label_hor %>
-    <%= f.input :about, as: :text, placeholder: 'Tell us about yourself',:wrapper => :label_hor %>
-    <%= f.input :birthday,  as: :string, start_year: Time.now.year - 90, end_year: Time.now.year - 8, :input_html => { :maxlength => 14, :"data-mask" => "999-999-9999" },  :wrapper => :label_hor %>
-  
-    <%= f.file_field :avatar %>
-    <%= image_tag @profile.avatar.url(:medium), id: "previewHolder", height: '200', width: '200', alt: 'avatar', align: "right" %>
+    <%= content_tag :div, class: "row" do %>
+      <%= content_tag :div, class: "small-9 columns" do %>
+        <%= f.input :name, :wrapper => :label_hor %>
+        <%= f.input :about, as: :text, placeholder: 'Tell us about yourself', :wrapper => :label_hor %>
+        <%= f.input :birthday, as: :string, placeholder: 'dd/mm/yyyy', input_html: {value: (@profile.birthday.blank? ? "" : @profile.birthday.strftime('%d/%m/%Y'))}, :wrapper => :label_hor %>
+        <%= f.input :avatar, as: :file, :wrapper => :label_hor %>
+      <% end %>
+      <%= content_tag :div, class: "small-3 columns" do %>
+        <%= image_tag @profile.avatar.url(:medium), id: "previewHolder", height: '200', width: '200', alt: 'avatar', align: "right" %>
+      <% end %>
+    <% end %>
   <% end %>
   <%= f.submit 'Save' %>
 
