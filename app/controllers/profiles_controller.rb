@@ -1,11 +1,11 @@
 class ProfilesController < ApplicationController
   def update
     @profile = current_user.profile
-    if @profile.update(params[:profile].permit(:location, :about, :birthday, :phone, :avatar))
+    if @profile.update(params[:profile].permit(:name, :about, :birthday, :avatar))
       flash[:notice] = "Successfully updated profile."
       redirect_to session.delete(:return_to)
     else
-      render 'edit'
+      render 'edit' and return
     end
     @profile.save!
   end

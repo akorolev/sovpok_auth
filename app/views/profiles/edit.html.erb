@@ -4,7 +4,8 @@
       <%= content_tag :div, class: "small-9 columns" do %>
         <%= f.input :name, :wrapper => :label_hor %>
         <%= f.input :about, as: :text, placeholder: 'Tell us about yourself', :wrapper => :label_hor %>
-        <%= f.input :birthday, as: :string, placeholder: 'dd/mm/yyyy', input_html: {value: (@profile.birthday.blank? ? "" : @profile.birthday.strftime('%d/%m/%Y'))}, :wrapper => :label_hor %>
+        <%#= f.input :birthday, as: :string, placeholder: 'dd/mm/yyyy', input_html: {value: (@profile.birthday.blank? ? "" : @profile.birthday.strftime('%d/%m/%Y'))}, :wrapper => :label_hor %>
+        <%= f.input :birthday, as: :string, :input_html => { :class => 'date_picker' }, :wrapper => :label_hor  %>
         <%= f.input :avatar, as: :file, :wrapper => :label_hor %>
       <% end %>
       <%= content_tag :div, class: "small-3 columns" do %>

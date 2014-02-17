@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery.maskedinput
 //= require jquery_ujs
+//= require jquery.ui.datepicker
+
 // Note: Foundation 5 won't work with turbolinks
 //= require foundation
 //= require_tree .
@@ -29,4 +31,8 @@ $("[data-match-height]").each(function() {
 
   childrenCols.css('min-height', tallestChild);
 
+});
+
+$(function() {
+  $('.date_picker').datepicker();
 });
