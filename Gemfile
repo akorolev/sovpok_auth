@@ -8,7 +8,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 1.2'
 gem 'cancan'
 gem 'devise'
 gem 'omniauth'
@@ -20,6 +19,7 @@ gem 'rolify'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
 gem "paperclip"
+gem 'jbuilder'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
