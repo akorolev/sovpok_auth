@@ -1,17 +1,19 @@
-<%# add navigation links to this file %>
-<% if user_signed_in? %>
-  <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
-<% else %>
-  <li><%= link_to 'Login', new_user_session_path, :remote => true %></li>
-<% end %>
-<% if user_signed_in? %>
-  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-<% else %>
-  <li><%= link_to 'Sign up', new_user_registration_path, :remote => true %></li>
-<% end %>
-<% if user_signed_in? %>
-  <li><%= link_to 'Users', users_path %></li>
-  <%= image_tag current_user.profile.avatar.url(:thumb) %>
-  <li><%= link_to 'Profile', profiles_edit_path %></li>
+<ul class="right">
+  <% if user_signed_in? %>
+    <li class="has-dropdown">
+      <%= image_tag current_user.profile.avatar.url(:thumb) %>
+      <ul class="dropdown">
+        <li><%= link_to 'Profile', profiles_edit_path %></li>
+        <li><%= link_to 'Addresses', addresses_path %></li>
+        <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+        <li><%= link_to 'Users', users_path %></li>
+        <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
+      </ul>
+    </li>
+  <% else %>
+    <li><%= link_to 'Login', new_user_session_path, :remote => true %></li>
+    <li><%= link_to 'Sign up', new_user_registration_path, :remote => true %></li>
+  <% end %>
 
-<% end %>
+
+</ul>

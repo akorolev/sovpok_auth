@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
   has_one :profile
+  has_many :addresses
   accepts_nested_attributes_for :profile
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
