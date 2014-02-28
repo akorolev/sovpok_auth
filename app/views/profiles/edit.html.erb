@@ -1,4 +1,4 @@
-<%= simple_form_for @profile do |f| %>
+<%= simple_form_for @profile, :url => profiles_update_path, :method=>:put do |f| %>
   <%= field_set_tag 'Your details' do %>
     <%= content_tag :div, class: "row" do %>
       <%= content_tag :div, class: "small-9 columns" do %>
