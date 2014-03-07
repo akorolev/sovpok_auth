@@ -1,0 +1,41 @@
+<h1>Listing categories</h1>
+
+<% navlink  = categories_path %>
+<%= link_to categories_path, categories_path %>
+<% @path_elements.each do |entry| %>
+  <% navlink = [navlink, entry].join('/') %>
+  -><%= link_to entry, navlink %>
+<% end %>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Slug</th>
+      <th>Parent</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= category.slug %></td>
+        <td><%= category.parent_id %></td>
+        <td><%= params[:category] %></td>
+        <td><%= category.friendly_id%></td>
+        <td><%= link_to 'Show', [@parent_category.friendly_id, category.friendly_id].join('/') %></td>
+        <td><%= link_to 'Edit', edit_category_path(category) %></td>
+        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Category', new_category_path(:category=> {:parent_id => @parent_category.id}) %>
