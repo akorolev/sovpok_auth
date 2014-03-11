@@ -4,7 +4,6 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-     get_category_id(nil)
      @categories = Category.where(parent_id: nil)
   end
 
@@ -19,7 +18,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
-    puts YAML::dump(params.inspect)
+    session[:return_to] ||= request.referer
     @category = Category.new(category_params)
   end
 
@@ -35,8 +34,8 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @category }
+        format.html { redirect_to session.delete(:return_to), notice: 'Category was successfully created.' }
+        format.json { render action: 'show', status: :created, location: session.delete(:return_to) }
       else
         format.html { render action: 'new' }
         format.json { render json: @category.errors, status: :unprocessable_entity }
@@ -62,16 +61,23 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
-    @category.destroy
+    rec = Category.find_by(parent_id: @category.id)
     respond_to do |format|
-      format.html { redirect_to categories_url }
-      format.json { head :no_content }
+      if rec.nil?
+        @category.destroy
+        format.html { redirect_to categories_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @category, :alert => "Error! Category #{@category.name} has childs and can't be deleted " }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   private
 
     def get_category_id(p_id)
+      p_id = nil if p_id.to_i == 0
       category_lvl_mask = [0xfc000000, 0x3f00000, 0xfc000, 0x3f00, 0xfc, 0x3]
       lvl = -1
       category_lvl_mask.each_with_index do |item, i|
