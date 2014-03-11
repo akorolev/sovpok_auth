@@ -17,11 +17,11 @@ puts 'DEFAULT USERS'
 user = User.find_or_create_by(:email => ENV['ADMIN_EMAIL'].dup)
 user.password = ENV['ADMIN_PASSWORD'].dup
 user.password_confirmation = ENV['ADMIN_PASSWORD'].dup
+user.add_role :admin
+user.save
 
 profile = Profile.find_or_create_by(:user_id=>user.id)
 profile.name = ENV['ADMIN_NAME'].dup
 
 #user.confirm!
-user.add_role :admin
-user.save
 profile.save
