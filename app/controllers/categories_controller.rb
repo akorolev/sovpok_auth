@@ -1,6 +1,9 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:edit, :update, :destroy]
+#  load_and_authorize_resource :find_by => :slug
+#  skip_authorize_resource only: [:index, :show]
 
+  LVL_MASK=[0xfc000000, 0x3f00000, 0xfc000, 0x3f00, 0xfc, 0x3]
   # GET /categories
   # GET /categories.json
   def index
@@ -18,8 +21,9 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
-    session[:return_to] ||= request.referer
     @category = Category.new(category_params)
+    authorize! :new, @category, :message => 'Not authorized as an administrator.'
+    session[:return_to] ||= request.referer
   end
 
   # GET /categories/1/edit
@@ -30,6 +34,8 @@ class CategoriesController < ApplicationController
   # POST /categories.json
   def create
     @category = Category.new(category_params)
+    authorize! :create, @category, :message => 'Not authorized as an administrator.'
+
     @category.id = get_category_id(category_params[:parent_id])
 
     respond_to do |format|
@@ -46,7 +52,7 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
-    puts YAML::dump(params.inspect)
+    authorize! :update, @category, :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to @category, notice: 'Category was successfully updated.' }
@@ -61,6 +67,7 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
+    authorize! :destroy, @category, :message => 'Not authorized as an administrator.'
     rec = Category.find_by(parent_id: @category.id)
     respond_to do |format|
       if rec.nil?
@@ -73,21 +80,20 @@ class CategoriesController < ApplicationController
       end
     end
   end
-
+  
   private
 
     def get_category_id(p_id)
       p_id = nil if p_id.to_i == 0
-      category_lvl_mask = [0xfc000000, 0x3f00000, 0xfc000, 0x3f00, 0xfc, 0x3]
       lvl = -1
-      category_lvl_mask.each_with_index do |item, i|
+      LVL_MASK.each_with_index do |item, i|
         lvl = i if (item & p_id.to_i) != 0
       end
-      mask = category_lvl_mask[lvl + 1]
+      mask = LVL_MASK[lvl + 1]
       add = 1
       while ((add & mask)==0) do add = add << 1 end
       last_rec = Category.where(parent_id: p_id).order(:id).last
-      last_rec.nil? ? add : last_rec.id + add
+      last_rec.nil? ? add + p_id.to_i: last_rec.id + add
     end
 
     # Use callbacks to share common setup or constraints between actions.
