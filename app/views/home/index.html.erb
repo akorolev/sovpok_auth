@@ -1,4 +1,6 @@
 <h3>Home</h3>
+<%= render 'categories/index' %>
+
 <% if user_signed_in? %>
   <div>Signed in as... <%= current_user.email %></div>
 <% end %>

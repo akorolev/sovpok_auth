@@ -12,4 +12,7 @@ module CategoriesHelper
       nav_pathes.shift
       nav_pathes
   end
+  def top_categories
+     @categories ||= Category.where(parent_id: nil)
+  end
 end
