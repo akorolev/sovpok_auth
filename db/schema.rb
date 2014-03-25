@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307054331) do
+ActiveRecord::Schema.define(version: 20140322095107) do
 
   create_table "addresses", force: true do |t|
     t.string   "name"
@@ -52,6 +52,34 @@ ActiveRecord::Schema.define(version: 20140307054331) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "lots", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "end_date"
+    t.integer  "prepay"
+    t.integer  "fee"
+    t.decimal  "min_order",          precision: 8, scale: 2
+    t.boolean  "pickup_allowed"
+    t.text     "pickup_description"
+    t.decimal  "postage_val1",       precision: 8, scale: 2
+    t.string   "postage_info1"
+    t.decimal  "postage_val2",       precision: 8, scale: 2
+    t.string   "postage_info2"
+    t.decimal  "postage_val3",       precision: 8, scale: 2
+    t.string   "postage_info3"
+    t.string   "source"
+    t.integer  "serial"
+    t.string   "keywords"
+    t.integer  "status"
+    t.integer  "category_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lots", ["category_id"], name: "index_lots_on_category_id"
+  add_index "lots", ["user_id"], name: "index_lots_on_user_id"
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id"

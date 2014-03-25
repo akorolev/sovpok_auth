@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  end_date: 2014-03-22 22:51:07
+  prepay: 1
+  fee: 1
+  min_order: 9.99
+  pickup_allowed: false
+  pickup_description: MyText
+  postage_val1: 9.99
+  postage_info1: MyString
+  postage_val2: 9.99
+  postage_info2: MyString
+  postage_val3: 9.99
+  postage_info3: MyString
+  source: MyString
+  serial: 1
+  keywords: MyString
+  status: 1
+  category_id: 
+  user_id: 
+
+two:
+  title: MyString
+  description: MyText
+  end_date: 2014-03-22 22:51:07
+  prepay: 1
+  fee: 1
+  min_order: 9.99
+  pickup_allowed: false
+  pickup_description: MyText
+  postage_val1: 9.99
+  postage_info1: MyString
+  postage_val2: 9.99
+  postage_info2: MyString
+  postage_val3: 9.99
+  postage_info3: MyString
+  source: MyString
+  serial: 1
+  keywords: MyString
+  status: 1
+  category_id: 
+  user_id: 

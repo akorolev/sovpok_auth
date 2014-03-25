@@ -1,0 +1,104 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @lot.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @lot.description %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @lot.end_date %>
+</p>
+
+<p>
+  <strong>Prepay:</strong>
+  <%= @lot.prepay %>
+</p>
+
+<p>
+  <strong>Fee:</strong>
+  <%= @lot.fee %>
+</p>
+
+<p>
+  <strong>Min order:</strong>
+  <%= @lot.min_order %>
+</p>
+
+<p>
+  <strong>Pickup allowed:</strong>
+  <%= @lot.pickup_allowed %>
+</p>
+
+<p>
+  <strong>Pickup description:</strong>
+  <%= @lot.pickup_description %>
+</p>
+
+<p>
+  <strong>Postage val1:</strong>
+  <%= @lot.postage_val1 %>
+</p>
+
+<p>
+  <strong>Postage info1:</strong>
+  <%= @lot.postage_info1 %>
+</p>
+
+<p>
+  <strong>Postage val2:</strong>
+  <%= @lot.postage_val2 %>
+</p>
+
+<p>
+  <strong>Postage info2:</strong>
+  <%= @lot.postage_info2 %>
+</p>
+
+<p>
+  <strong>Postage val3:</strong>
+  <%= @lot.postage_val3 %>
+</p>
+
+<p>
+  <strong>Postage info3:</strong>
+  <%= @lot.postage_info3 %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @lot.source %>
+</p>
+
+<p>
+  <strong>Serial:</strong>
+  <%= @lot.serial %>
+</p>
+
+<p>
+  <strong>Keywords:</strong>
+  <%= @lot.keywords %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @lot.status %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @lot.category %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @lot.user %>
+</p>
+
+<%= link_to 'Edit', edit_lot_path(@lot) %> |
+<%= link_to 'Back', lots_path %>

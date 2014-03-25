@@ -1,4 +1,6 @@
 SovpokAuth::Application.routes.draw do
+  resources :lots
+
   resources :addresses
   resources :categories, :except => [:show]
   get "/categories/*category" => "categories#show"

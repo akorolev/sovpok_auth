@@ -1,0 +1,33 @@
+<%= simple_form_for(@lot) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :end_date, as: :string, :input_html => { :id => 'datetimepicker' } %>
+
+    <%= f.input :prepay %>
+    <%= f.input :fee %>
+    <%= f.input :min_order %>
+    <%= f.input :pickup_allowed %>
+    <%= f.input :pickup_description %>
+    <%= f.input :postage_val1 %>
+    <%= f.input :postage_info1 %>
+    <%= f.input :postage_val2 %>
+    <%= f.input :postage_info2 %>
+    <%= f.input :postage_val3 %>
+    <%= f.input :postage_info3 %>
+    <%= f.input :source %>
+    <%= f.input :serial %>
+    <%= f.input :keywords %>
+    <%#= f.input :status %>
+
+    <%= f.association :category, collection: Category.where(parent_id:nil)%>
+    <%#= f.association :user %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
