@@ -35,11 +35,18 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     authorize! :create, @category, :message => 'Not authorized as an administrator.'
-
+    parent = Category.find_by(id: category_params[:parent_id])
+    
     @category.id = get_category_id(category_params[:parent_id])
+    @category.level = get_category_level(category_params[:parent_id])
+    @category.parent = parent.name unless parent.nil?
 
     respond_to do |format|
       if @category.save
+        unless (parent.nil?)
+          parent.has_children = 1
+          parent.save
+        end
         format.html { redirect_to session.delete(:return_to), notice: 'Category was successfully created.' }
         format.json { render action: 'show', status: :created, location: session.delete(:return_to) }
       else
@@ -82,14 +89,18 @@ class CategoriesController < ApplicationController
   end
   
   private
-
-    def get_category_id(p_id)
-      p_id = nil if p_id.to_i == 0
+    def get_category_level(p_id)
       lvl = -1
       LVL_MASK.each_with_index do |item, i|
         lvl = i if (item & p_id.to_i) != 0
       end
-      mask = LVL_MASK[lvl + 1]
+      lvl + 1
+    end
+
+    def get_category_id(p_id)
+      p_id = nil if p_id.to_i == 0
+      level = get_category_level(p_id)
+      mask = LVL_MASK[level]
       add = 1
       while ((add & mask)==0) do add = add << 1 end
       last_rec = Category.where(parent_id: p_id).order(:id).last

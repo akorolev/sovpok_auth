@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140322095107) do
+ActiveRecord::Schema.define(version: 20140331035329) do
 
   create_table "addresses", force: true do |t|
     t.string   "name"
@@ -35,8 +35,12 @@ ActiveRecord::Schema.define(version: 20140322095107) do
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "level"
+    t.string   "parent"
+    t.integer  "has_children"
   end
 
+  add_index "categories", ["level"], name: "index_categories_on_level"
   add_index "categories", ["parent_id"], name: "index_categories_on_parent_id"
   add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true
 
