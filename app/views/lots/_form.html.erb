@@ -24,8 +24,8 @@
 
     <%#= f.association :category, collection: Category.where(parent_id:nil)%>
     <% for i in 0..CategoriesController::LVL_MASK.length %>
-      <%= f.input "sub_category_lvl#{i}", input_html: {size:"3"}, :as => :select, label:false  do %>
-        <% f.select "sub_category_lvl#{i}", @lot.send("sub_category_lvl#{i}")%>
+      <%= f.input "sub_category_lvl#{i}", :as => :select, :label => false do %>
+        <% f.select "sub_category_lvl#{i}", @lot.send("sub_category_lvl#{i}"), {}, {:size => 5}%>
       <% end %>
     <% end %>
 
