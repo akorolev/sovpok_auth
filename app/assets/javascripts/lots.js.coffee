@@ -4,13 +4,15 @@
 //= require third_party/jquery.datetimepicker
 //= require third_party/jquery.chained
 
-$("#datetimepicker").datetimepicker allowTimes: [
-  "9:00"
+$("#datetimepicker").datetimepicker
+  format:'d.m.Y H:i'
+  minDate:'0'
+  allowTimes: [ "9:00"
   "10:00"
   "11:00"
   "12:00"
-  "13:05"
-  "14:20"
+  "13:00"
+  "14:00"
   "15:00"
   "16:00"
   "17:00"
@@ -19,7 +21,7 @@ $("#datetimepicker").datetimepicker allowTimes: [
   "20:00"
   "21:00"
   "22:00"
-]
+  ]
 
 $ ->
   # For jquery.chained.js 
