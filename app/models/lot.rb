@@ -1,6 +1,7 @@
 class Lot < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
+  validates :terms_of_service, acceptance: true
 
   for lvl in 0..CategoriesController::LVL_MASK.length do 
     define_method "sub_category_lvl#{lvl}" do

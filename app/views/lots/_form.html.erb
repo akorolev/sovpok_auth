@@ -1,6 +1,6 @@
 <%= simple_form_for(@lot) do |f| %>
   <%= f.error_notification %>
-
+  <%= action_name %>
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.input :description %>
@@ -21,6 +21,7 @@
     <%= f.input :serial %>
     <%= f.input :keywords %>
     <%#= f.input :status %>
+    <%= f.input :terms_of_service, as: :boolean %>
 
     <%#= f.association :category, collection: Category.where(parent_id:nil)%>
     <% for i in 0..CategoriesController::LVL_MASK.length %>

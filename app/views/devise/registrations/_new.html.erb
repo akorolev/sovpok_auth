@@ -24,7 +24,7 @@
     <p> Save time to sign up by using your Facebook account </p>
 
     <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= link_to image_tag("#{provider.to_s.titleize}.jpeg"), omniauth_authorize_path(resource_name, provider) %><br />
+      <%= link_to image_tag("#{provider.to_s.titleize}.png"), omniauth_authorize_path(resource_name, provider) %><br />
     <% end -%>
   <% end -%>
 </div>
