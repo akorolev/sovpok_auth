@@ -145,6 +145,7 @@ SimpleForm.setup do |config|
 
   # You can define the class to use on all labels. Default is nil.
   # config.label_class = 'control-label right inline'
+  config.label_class = 'control-label inline'
 
   # You can define the class to use on all forms. Default is simple_form.
   # config.form_class = :simple_form

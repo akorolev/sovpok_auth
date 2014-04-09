@@ -2,13 +2,17 @@
   <%= f.error_notification %>
   <%= action_name %>
   <div class="form-inputs">
-    <%= f.input :title, required: true, placeholder: "Maximum lot title size is 50 characters", label: "Lot title", input_html: {:maxlength => 50} %>
-    <%= f.input :description, required: true, placeholder: "Please give a short description for a whole lot", input_html: {rows: 8 } %>
-    <%= f.input :end_date, as: :string, required: true, :input_html => { :id => 'datetimepicker' } %>
+    <%= f.input :title, required: true, placeholder: "Maximum lot title size is 50 characters", label: "Title", input_html: {:maxlength => 50} %>
+    <%= f.input :description, required: true, placeholder: "Short description for a whole lot", input_html: {rows: 8 } %>
+    <%= f.input :end_date, as: :string, required: true, placeholder: "Last date to book orders, maximum 90 days", :input_html => { :id => 'datetimepicker' } %>
 
-    <%= f.input :prepay, placeholder: "Prepay required in %" %>
+    <%= f.input :prepay, placeholder: "Prepay required in %" %>	
     <%= f.input :fee, placeholder: "Organiser fee in %" %>
-    <%= f.input :min_order %>
+    <%= f.input :min_order, label: "Minimum sum", placeholder: "Minimum sum for all orders in NZD" %>
+    <%= f.input :condition, required: true, placeholder: "Orders conditions (payment, refund, delivery, etc)", input_html: {rows: 4 } %>
+
+    <%= f.input :source, label: "Supplier", placeholder: "link to supplier's web site" %>
+
     <%= f.input :pickup_allowed %>
     <%= f.input :pickup_description %>
     <%= f.input :postage_val1 %>
@@ -17,15 +21,13 @@
     <%= f.input :postage_info2 %>
     <%= f.input :postage_val3 %>
     <%= f.input :postage_info3 %>
-    <%= f.input :source %>
-    <%= f.input :serial %>
     <%= f.input :keywords %>
     <%#= f.input :status %>
     <%= f.input :terms_of_service, as: :boolean %>
 
     <%= content_tag :div, class: "row" do %>
       <%= content_tag :div, class: "small-3 columns" do %>
-        <label> Category </label>
+        <%= f.label :category %>
       <% end %>
 
       <%= content_tag :div, class: "small-9 columns" do %>
