@@ -1,13 +1,13 @@
-<%= simple_form_for(@lot) do |f| %>
+<%= simple_form_for @lot,  wrapper: :label_hor do |f| %>
   <%= f.error_notification %>
   <%= action_name %>
   <div class="form-inputs">
-    <%= f.input :title, required: true %>
-    <%= f.input :description, required: true, label: "Description and conditions", input_html: {rows: 8 } %>
+    <%= f.input :title, required: true, placeholder: "Maximum lot title size is 50 characters", label: "Lot title", input_html: {:maxlength => 50} %>
+    <%= f.input :description, required: true, placeholder: "Please give a short description for a whole lot", input_html: {rows: 8 } %>
     <%= f.input :end_date, as: :string, required: true, :input_html => { :id => 'datetimepicker' } %>
 
-    <%= f.input :prepay %>
-    <%= f.input :fee %>
+    <%= f.input :prepay, placeholder: "Prepay required in %" %>
+    <%= f.input :fee, placeholder: "Organiser fee in %" %>
     <%= f.input :min_order %>
     <%= f.input :pickup_allowed %>
     <%= f.input :pickup_description %>
@@ -23,11 +23,24 @@
     <%#= f.input :status %>
     <%= f.input :terms_of_service, as: :boolean %>
 
-    <%#= f.association :category, collection: Category.where(parent_id:nil)%>
-    <% for i in 0..CategoriesController::LVL_MASK.length %>
-      <%= f.input "sub_category_lvl#{i}", :as => :select, :label => false do %>
-        <% f.select "sub_category_lvl#{i}", @lot.send("sub_category_lvl#{i}"), {}, {:size => 5}%>
+    <%= content_tag :div, class: "row" do %>
+      <%= content_tag :div, class: "small-3 columns" do %>
+        <label> Category </label>
       <% end %>
+
+      <%= content_tag :div, class: "small-9 columns" do %>
+        <%= content_tag :div, class: "row" do %>
+          <% for i in 0..CategoriesController::LVL_MASK.length %>
+            <%= content_tag :div, class: "small-4 columns" do %>
+
+              <%= f.input "sub_category_lvl#{i}", as: :select, label: false do %>
+                <% f.select "sub_category_lvl#{i}", @lot.send("sub_category_lvl#{i}"), {}, {size: 5}%>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
     <% end %>
 
     <%#= f.association :user %>

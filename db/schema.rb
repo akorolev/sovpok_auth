@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140331035329) do
+ActiveRecord::Schema.define(version: 20140408234343) do
 
   create_table "addresses", force: true do |t|
     t.string   "name"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20140331035329) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "condition"
   end
 
   add_index "lots", ["category_id"], name: "index_lots_on_category_id"
