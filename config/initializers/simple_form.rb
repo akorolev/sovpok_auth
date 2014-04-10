@@ -83,10 +83,10 @@ SimpleForm.setup do |config|
 
     b.wrapper :tag => 'div', :class => 'row' do |ba|
     ## Inputs
-      ba.wrapper :tag => 'div', :class => 'small-3 columns' do |baa|
+      ba.wrapper :tag => 'div', :class => 'small-2 columns' do |baa|
         baa.use :label
       end
-      ba.wrapper :tag => 'div', :class => 'small-9 columns' do |baa|
+      ba.wrapper :tag => 'div', :class => 'small-10 columns' do |baa|
         baa.use :input
         baa.use :hint,  wrap_with: { tag: :span, class: :hint }
         baa.use :error, wrap_with: { tag: :span, class: 'error' }
@@ -142,6 +142,7 @@ SimpleForm.setup do |config|
 
   # How the label text should be generated altogether with the required text.
   # config.label_text = lambda { |label, required| "#{required} #{label}" }
+  config.label_text = lambda { |label, required| "#{label}" }
 
   # You can define the class to use on all labels. Default is nil.
   # config.label_class = 'control-label right inline'

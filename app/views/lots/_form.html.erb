@@ -10,8 +10,7 @@
     <%= f.input :fee, placeholder: "Organiser fee in %" %>
     <%= f.input :min_order, label: "Minimum sum", placeholder: "Minimum sum for all orders in NZD" %>
     <%= f.input :condition, required: true, placeholder: "Orders conditions (payment, refund, delivery, etc)", input_html: {rows: 4 } %>
-
-    <%= f.input :source, label: "Supplier", placeholder: "link to supplier's web site" %>
+    <%= f.input :source, label: "Supplier", placeholder: "Link to a supplier's web site" %>
 
     <%= f.input :pickup_allowed %>
     <%= f.input :pickup_description %>
@@ -23,7 +22,7 @@
     <%= f.input :postage_info3 %>
     <%= f.input :keywords %>
     <%#= f.input :status %>
-    <%= f.input :terms_of_service, as: :boolean %>
+    <%= f.input :terms_of_service, required: true, as: :boolean %>
 
     <%= content_tag :div, class: "row" do %>
       <%= content_tag :div, class: "small-3 columns" do %>

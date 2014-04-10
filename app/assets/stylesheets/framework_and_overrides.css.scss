@@ -4,7 +4,12 @@ $reveal-modal-padding: 0px !default;
 $reveal-modal-bg: #F2F2F2 !default;
 
 @import "foundation";
-
+textarea {
+  height:auto;
+}
+.required label {
+    font-weight: bold;
+}
 // override for the 'Home' navigation link
 .top-bar .name {
   font-size: rem-calc(13);
