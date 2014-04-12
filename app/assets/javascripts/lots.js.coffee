@@ -32,3 +32,14 @@ $ ->
   $("#lot_sub_category_lvl5").chained "#lot_sub_category_lvl4"
   $("#lot_sub_category_lvl6").chained "#lot_sub_category_lvl5"
   #return
+
+$ ->
+  $("#add_fields_placeholder").change ->
+    if $(this).checked
+      $("#add_fields_placeholderValue").show()
+    else
+      $("#add_fields_placeholderValue").hide()
+    return
+
+  $("#add_fields_placeholderValue").hide()
+  return
