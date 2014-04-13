@@ -34,12 +34,9 @@ $ ->
   #return
 
 $ ->
-  $("#add_fields_placeholder").change ->
-    if $(this).checked
-      $("#add_fields_placeholderValue").show()
-    else
-      $("#add_fields_placeholderValue").hide()
-    return
-
-  $("#add_fields_placeholderValue").hide()
+  $('#show_pickup').on "change", ->
+      $("#pickup").toggle  @checked
+	  return
   return
+
+ 

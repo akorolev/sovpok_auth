@@ -94,6 +94,28 @@ SimpleForm.setup do |config|
     end
   end
 
+  config.wrappers :no_divs_labels, class: :input,
+    hint_class: :field_with_hint, error_class: :error do |b|
+    b.use :html5
+    b.use :placeholder
+
+    # Calculates maxlength from length validations for string inputs
+    b.optional :maxlength
+
+    # Calculates pattern from format validations for string inputs
+    b.optional :pattern
+
+    # Calculates min and max from length validations for numeric inputs
+    b.optional :min_max
+
+    # Calculates readonly automatically from readonly attributes
+    b.optional :readonly
+
+    b.use :input
+    b.use :hint,  wrap_with: { tag: :span, class: :hint }
+    b.use :error, wrap_with: { tag: :span, class: :error }
+  end
+
   # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :default
 

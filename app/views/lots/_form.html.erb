@@ -2,44 +2,49 @@
   <%= f.error_notification %>
   <%= action_name %>
   <div class="form-inputs">
-    <%= f.input :title, required: true, placeholder: "Maximum lot title size is 50 characters", label: "Title", input_html: {:maxlength => 50} %>
-    <%= f.input :description, required: true, placeholder: "Short description for a whole lot", input_html: {rows: 8 } %>
-    <%= f.input :end_date, as: :string, required: true, placeholder: "Last date to book orders, maximum 90 days", :input_html => { :id => 'datetimepicker' } %>
+    <%= f.input :title,			required: true, label: "Title",				placeholder: "Maximum lot title size is 50 characters",  input_html: {:maxlength => 50} %>
+    <%= f.input :description,	required: true, 							placeholder: "Short description for a whole lot", input_html: {rows: 8 } %>
+    <%= f.input :end_date,		required: true, 							placeholder: "Last date to book orders, maximum 90 days", :input_html => { :id => 'datetimepicker' }, as: :string %>
+    <%= f.input :prepay, 													placeholder: "Prepay required in %" %>	
+    <%= f.input :fee, 														placeholder: "Organiser fee in %" %>
+    <%= f.input :min_order, 					label: "Minimum sum",		placeholder: "Minimum sum for all orders in NZD" %>
+    <%= f.input :condition, 	required: true, label: "Lot conditions",placeholder: "Lot conditions (payment, refund, delivery, etc)", input_html: {rows: 4 } %>
+    <%= f.input :source, 						label: "Supplier",			placeholder: "Link to a supplier's web site" %>
 
-    <%= f.input :prepay, placeholder: "Prepay required in %" %>	
-    <%= f.input :fee, placeholder: "Organiser fee in %" %>
-    <%= f.input :min_order, label: "Minimum sum", placeholder: "Minimum sum for all orders in NZD" %>
-    <%= f.input :condition, required: true, placeholder: "Orders conditions (payment, refund, delivery, etc)", input_html: {rows: 4 } %>
-    <%= f.input :source, label: "Supplier", placeholder: "Link to a supplier's web site" %>
+    <%= f.input :pickup_allowed, :input_html => { id: 'show_pickup' } %>
+    <%= f.input :pickup_description, label: false, placeholder: "Pickup instructions. They will be invisible unlless purchase is complete", :input_html => { id: 'pickup', style: "display: none"} %>
 
-    <%= f.input :pickup_allowed %>
-    <%= f.input :pickup_description %>
-    <%= f.input :postage_val1 %>
-    <%= f.input :postage_info1 %>
-    <%= f.input :postage_val2 %>
-    <%= f.input :postage_info2 %>
-    <%= f.input :postage_val3 %>
-    <%= f.input :postage_info3 %>
+    <% for i in 1..3 %>
+    <%= content_tag :div, class: "row" do %>
+
+      <%= content_tag :div, class: "small-2 columns" do %>
+        <%= f.label (i == 1) ? :shipping : " " %>
+      <% end %>
+      <%= content_tag :div, class: "small-2 columns" do %>
+        <%= f.input "postage_val#{i}", placeholder: "Cost in NZD", wrapper: :no_divs_labels %>
+      <% end %>
+      <%= content_tag :div, class: "small-8	columns" do %>
+        <%= f.input "postage_info#{i}", placeholder: "Details", wrapper: :no_divs_labels %>
+      <% end %>
+
+    <% end %>
+    <% end %>
+
     <%= f.input :keywords %>
     <%#= f.input :status %>
     <%= f.input :terms_of_service, required: true, as: :boolean %>
 
     <%= content_tag :div, class: "row" do %>
-      <%= content_tag :div, class: "small-3 columns" do %>
+      <%= content_tag :div, class: "small-2 columns" do %>
         <%= f.label :category %>
       <% end %>
 
-      <%= content_tag :div, class: "small-9 columns" do %>
-        <%= content_tag :div, class: "row" do %>
-          <% for i in 0..CategoriesController::LVL_MASK.length %>
-            <%= content_tag :div, class: "small-4 columns" do %>
-
-              <%= f.input "sub_category_lvl#{i}", as: :select, label: false do %>
-                <% f.select "sub_category_lvl#{i}", @lot.send("sub_category_lvl#{i}"), {}, {size: 5}%>
-              <% end %>
-            <% end %>
-          <% end %>
+      <% for i in 0..CategoriesController::LVL_MASK.length %>
+      <%= content_tag :div, class: "small-3 columns" do %>
+        <%= f.input "sub_category_lvl#{i}", as: :select, wrapper: :no_divs_labels do %>
+          <% f.select "sub_category_lvl#{i}", @lot.send("sub_category_lvl#{i}"), {}, {size: 5}%>
         <% end %>
+      <% end %>
       <% end %>
 
     <% end %>
@@ -50,5 +55,7 @@
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
+
+
 <% end %>
 
