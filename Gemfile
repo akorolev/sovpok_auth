@@ -21,6 +21,7 @@ gem 'therubyracer', :platform=>:ruby
 gem "paperclip"
 gem 'jbuilder'
 gem 'friendly_id'
+gem 'font-awesome-rails'
 
 group :development do
   gem 'better_errors'

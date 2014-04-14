@@ -2,14 +2,14 @@
   <%= f.error_notification %>
   <%= action_name %>
   <div class="form-inputs">
-    <%= f.input :title,			required: true, label: "Title",				placeholder: "Maximum lot title size is 50 characters",  input_html: {:maxlength => 50} %>
-    <%= f.input :description,	required: true, 							placeholder: "Short description for a whole lot", input_html: {rows: 8 } %>
-    <%= f.input :end_date,		required: true, 							placeholder: "Last date to book orders, maximum 90 days", :input_html => { :id => 'datetimepicker' }, as: :string %>
-    <%= f.input :prepay, 													placeholder: "Prepay required in %" %>	
-    <%= f.input :fee, 														placeholder: "Organiser fee in %" %>
-    <%= f.input :min_order, 					label: "Minimum sum",		placeholder: "Minimum sum for all orders in NZD" %>
-    <%= f.input :condition, 	required: true, label: "Lot conditions",placeholder: "Lot conditions (payment, refund, delivery, etc)", input_html: {rows: 4 } %>
-    <%= f.input :source, 						label: "Supplier",			placeholder: "Link to a supplier's web site" %>
+    <%= f.input :title, required: true, label: "Title", placeholder: "Maximum lot title size is 50 characters",  input_html: {:maxlength => 50} %>
+    <%= f.input :description, required: true, placeholder: "Short description for a whole lot", input_html: {rows: 8 } %>
+    <%= f.input :end_date, required: true, placeholder: "Last date to book orders, maximum 90 days", :input_html => { :id => 'datetimepicker' }, as: :string %>
+    <%= f.input :prepay, placeholder: "Prepay required in %" %>	
+    <%= f.input :fee, placeholder: "Organiser fee in %" %>
+    <%= f.input :min_order, label: "Minimum sum", placeholder: "Minimum sum for all orders in NZD" %>
+    <%= f.input :condition, required: true, label: "Lot conditions",placeholder: "Lot conditions (payment, refund, delivery, etc)", input_html: {rows: 4 } %>
+    <%= f.input :source, label: "Supplier", placeholder: "Link to a supplier's web site" %>
 
     <%= f.input :pickup_allowed, :input_html => { id: 'show_pickup' } %>
     <%= f.input :pickup_description, label: false, placeholder: "Pickup instructions. They will be invisible unlless purchase is complete", :input_html => { id: 'pickup', style: "display: none"} %>
@@ -55,6 +55,11 @@
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
+
+<div>
+<%= fa_icon "question-circle 2x" %>
+</div>
+
 
 
 <% end %>
