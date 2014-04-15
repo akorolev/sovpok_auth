@@ -85,6 +85,7 @@ SimpleForm.setup do |config|
     ## Inputs
       ba.wrapper :tag => 'div', :class => 'small-2 columns' do |baa|
         baa.use :label
+        baa.use :help
       end
       ba.wrapper :tag => 'div', :class => 'small-10 columns' do |baa|
         baa.use :input
@@ -168,7 +169,7 @@ SimpleForm.setup do |config|
 
   # You can define the class to use on all labels. Default is nil.
   # config.label_class = 'control-label right inline'
-  config.label_class = 'control-label inline'
+  config.label_class = 'control-label inline fa'
 
   # You can define the class to use on all forms. Default is simple_form.
   # config.form_class = :simple_form
