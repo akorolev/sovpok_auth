@@ -5,7 +5,12 @@ module SimpleForm
       # Name of the component method
       def help
         @help ||= begin
-           template.fa_icon("question-circle lg").to_s.html_safe if options[:help].present?
+           return unless options[:help].present?
+           ret = template.link_to(template.help_show_path(:id => label_target), :remote => true ) do
+               template.fa_icon("question-circle lg").to_s
+           end
+           "&nbsp;" + ret.to_s.html_safe
+       
         end
       end
 

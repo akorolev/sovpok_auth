@@ -10,5 +10,6 @@ SovpokAuth::Application.routes.draw do
   resources :users
   get "profiles/edit"
   put "profiles/update"
+  get "help/show"
 #  resources :profiles, :only => [:edit]
 end
