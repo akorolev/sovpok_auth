@@ -37,7 +37,7 @@
 
     <%= content_tag :div, class: "row" do %>
       <%= content_tag :div, class: "small-2 columns" do %>
-        <%= f.label :category %>
+        <%= f.label :sub_category_lvl0, "Default category" %>
       <% end %>
 
       <% for i in 0..CategoriesController::LVL_MASK.length %>

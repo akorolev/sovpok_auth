@@ -18,6 +18,10 @@ class Lot < ActiveRecord::Base
   validates :source, length: { maximum: 50 }, allow_blank: true
 
   validates :category_id, presence: true
+  validate do
+    check_category_id
+  end
+
 
   validates :condition, presence: true, length: { minimum: 15, maximum: 1000 }
   validates :terms_of_service, acceptance: true
@@ -25,15 +29,31 @@ class Lot < ActiveRecord::Base
 
   for lvl in 0..CategoriesController::LVL_MASK.length do 
     define_method "sub_category_lvl#{lvl}" do
-      idx = __method__.to_s[-1]
+      cur_category = read_attribute(:category_id).to_i
+      idx = __method__.to_s[-1].to_i
       ret_val = [""]
       Category.where(level: idx).each do |cat|
-        chained_class = "last " if (cat.has_children.to_i == 0)  
-        chained_class = chained_class.to_s + cat.parent_id.to_s
-        ret_val = ret_val << [cat.name, cat.id, {:class => chained_class}]
+        select_attributes = {class: cat.parent_id.to_s}
+        select_attributes[:class] << " last" if (cat.has_children.to_i == 0)
+        select_attributes[:selected] = "selected" if cur_category.between?(cat.id, cat.id + CategoriesController::LVL_MASK[idx] - 1)
+        ret_val = ret_val << [cat.name, cat.id, select_attributes]
       end
       ret_val
     end
+    define_method "sub_category_lvl#{lvl}=" do |sub_category|
+      return if sub_category.to_i == 0
+      write_attribute(:category_id, sub_category) if read_attribute(:category_id).to_i < sub_category.to_i
+    end
+
   end
 
+  private
+
+  def check_category_id
+    category = Category.find_by(id: category_id)
+    return if category.nil?
+    if category.has_children.to_i > 0
+         errors.add("sub_category_lvl#{category.level + 1}", "Please select subcategory")   
+    end
+  end
 end
