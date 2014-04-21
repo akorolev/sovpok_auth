@@ -34,10 +34,15 @@ class Lot < ActiveRecord::Base
       idx = __method__.to_s[-1].to_i
       ret_val = [""]
       Category.where(level: idx).each do |cat|
+        name = cat.name
         select_attributes = {class: cat.parent_id.to_s}
-        select_attributes[:class] << " last" if (cat.has_children.to_i == 0)
+        if (cat.has_children.to_i == 0)
+          select_attributes[:class] << " last"
+        else  
+          name += " ->"
+        end
         select_attributes[:selected] = "selected" if cur_category.between?(cat.id, cat.id + CategoriesController::LVL_MASK[idx] - 1)
-        ret_val = ret_val << [cat.name, cat.id, select_attributes]
+        ret_val = ret_val << [name, cat.id, select_attributes]
       end
       ret_val
     end
