@@ -2,9 +2,9 @@
   <%= f.error_notification %>
   <%= action_name %>
   <div class="form-inputs">
-    <%= f.input :title, help: true, required: true, label: "Title", placeholder: "Maximum lot title size is 50 characters",  input_html: {:maxlength => 50} %>
+    <%= f.input :title, help: true, required: true, placeholder: "Maximum lot title size is 50 characters",  input_html: {:maxlength => 50} %>
     <%= f.input :description, required: true, placeholder: "Short description for a whole lot", input_html: {rows: 8 } %>
-    <%= f.input :end_date, help: true, required: true, placeholder: "Last date to book orders, maximum 90 days", :input_html => { :id => 'datetimepicker' }, as: :string %>
+    <%= f.input :end_date, help: true, required: true, label: "Expire date", placeholder: "Last date to book orders, maximum 90 days", :input_html => { :id => 'datetimepicker' }, as: :string %>
     <%= f.input :prepay, placeholder: "Prepay required in %" %>
     <%= f.input :fee, placeholder: "Organiser fee in %" %>
     <%= f.input :min_order, label: "Required sum", placeholder: "Sum required to activate the lot in NZD" %>
@@ -37,7 +37,8 @@
 
     <%= content_tag :div, class: "row" do %>
       <%= content_tag :div, class: "small-2 columns" do %>
-        <%= f.label :sub_category_lvl0, "Default category" %>
+        <% category_label_class = @lot.errors[:category_id].empty? ? "" : "error" %>
+        <%= f.label :sub_category_lvl0, "Default category", class: category_label_class %>
       <% end %>
 
       <% for i in 0..CategoriesController::LVL_MASK.length %>
@@ -56,15 +57,6 @@
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
-
-
-<%= link_to(help_show_path(:id =>"my_topic"), :remote => true ) do %>
-   <%= fa_icon "question-circle lg" %>
-<% end %>
-
-
-
-
 
 <% end %>
 

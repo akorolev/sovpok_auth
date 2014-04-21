@@ -20,6 +20,7 @@ class Lot < ActiveRecord::Base
   validates :category_id, presence: true
   validate do
     check_category_id
+    check_end_date
   end
 
 
@@ -54,6 +55,12 @@ class Lot < ActiveRecord::Base
     return if category.nil?
     if category.has_children.to_i > 0
          errors.add("sub_category_lvl#{category.level + 1}", "Please select subcategory")   
+         errors.add(:category_id, "Please select subcategory")   
     end
   end
+  def check_end_date
+    errors.add(:end_date, "Expire date can't be in a past") if end_date.to_i < DateTime.now.to_i
+    errors.add(:end_date, "Expire date must be within 90 days") if end_date.to_i > 90.days.from_now.to_i
+  end
+
 end
