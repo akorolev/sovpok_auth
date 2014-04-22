@@ -1,9 +1,12 @@
 // import the CSS framework
-$topbar-bg: #212D48 !default;
-$reveal-modal-padding: 0px !default;
-$reveal-modal-bg: #F2F2F2 !default;
 
 @import "foundation";
+
+// $topbar-bg: #212D48 !default;
+// $reveal-modal-padding: 0px !default;
+// $reveal-modal-bg: #F2F2F2 !default;
+
+
 textarea {
   height:auto;
 }
@@ -55,3 +58,15 @@ section {
   @extend .row;
   margin-top: 20px;
   }
+
+button, .social-login {
+  font-weight: bold !important;
+  color: white !important;
+  padding: 1rem 2rem 1rem 1rem;
+  background-color: #4468ac
+  }
+
+button, .social-login:hover {
+  font-color: white !important;
+  background:#547ec0 !important; /*example */
+}
