@@ -1,10 +1,11 @@
 // import the CSS framework
+$topbar-bg: #212D48 !default;
+$reveal-modal-padding: 0px !default;
+$reveal-modal-margins: 0px !default;
+$reveal-modal-bg: #F2F2F2 !default;
 
 @import "foundation";
 
-// $topbar-bg: #212D48 !default;
-// $reveal-modal-padding: 0px !default;
-// $reveal-modal-bg: #F2F2F2 !default;
 
 
 textarea {

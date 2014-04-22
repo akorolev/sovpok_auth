@@ -1,32 +1,25 @@
-<div style="background: light-gray; padding: 10px">
   <h3> Welcome </h3>
 
-  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:role => 'form' }, :remote => true) do |f| %>
-
-
-  <%#= f.error_notification %>
-  <%#= display_base_errors resource %>
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:role => 'form' }, :remote => true, wrapper: :label_hor) do |f| %>
 
   <%= f.simple_fields_for :profile do |profile_fields| %>
-    <%= profile_fields.input :name , :autofocus => true, :required => true %>
+    <%= profile_fields.input :name , :autofocus => true, :required => true, :input_html => {maxlength: 40, size: 18} %>
   <% end %>
-  <%= f.input :email, :required => true %>
-  <%= f.input :password, :required => true %>
-  <%= f.input :password_confirmation, :required => true %>
-  <%= f.submit 'Sign up', :class => 'button' %>
+  <%= f.input :email, :required => true, :input_html => {maxlength: 40, size: 18} %>
+  <%= f.input :password, :required => true, :input_html => {maxlength: 40, size: 18} %>
+  <%= f.input :password_confirmation, :required => true, label: "Confirm password", :input_html => {maxlength: 40, size: 18} %>
+  <%= f.submit 'Sign up', :class => 'button radius' %>
 
   <% end %>
+<hr>
 
-</div>
-<div style="background: white; padding: 10px">
 
   <%- if devise_mapping.omniauthable? %>
     <p> Save time to sign up by using your Facebook account </p>
 
     <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= link_to image_tag("#{provider.to_s.titleize}.png"), omniauth_authorize_path(resource_name, provider) %><br />
+      <%= link_to "<i class='fa fa-facebook fa-lg'></i> &nbsp; Connect with Facebook".html_safe, "omniauth_authorize_path(resource_name, provider)", class: "button radius social-login" %><br />
     <% end -%>
   <% end -%>
-</div>
 
 
