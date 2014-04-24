@@ -18,7 +18,7 @@
     <p> Save time to sign up by using your Facebook account </p>
 
     <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= link_to "<i class='fa fa-facebook fa-lg'></i> &nbsp; Connect with Facebook".html_safe, "omniauth_authorize_path(resource_name, provider)", class: "button radius social-login" %><br />
+      <%= link_to "<i class='fa fa-facebook fa-lg'></i> &nbsp; Connect with Facebook".html_safe, omniauth_authorize_path(resource_name, provider), class: "button radius social-login" %><br />
     <% end -%>
   <% end -%>
 

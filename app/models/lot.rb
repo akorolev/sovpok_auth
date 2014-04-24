@@ -17,7 +17,6 @@ class Lot < ActiveRecord::Base
   validates :postage_info3, length: { maximum: 50 }, allow_blank: true
   validates :source, length: { maximum: 50 }, allow_blank: true
 
-  validates :category_id, presence: true
   validate do
     check_category_id
     check_end_date
