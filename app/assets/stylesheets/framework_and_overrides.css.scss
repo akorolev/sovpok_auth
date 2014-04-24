@@ -60,14 +60,14 @@ section {
   margin-top: 20px;
   }
 
-button, .social-login {
+.button.social-login {
   font-weight: bold !important;
   color: white !important;
   padding: 1rem 2rem 1rem 1rem;
   background-color: #4468ac
   }
 
-button, .social-login:hover {
+.button.social-login:hover {
   font-color: white !important;
   background:#547ec0 !important; /*example */
 }
