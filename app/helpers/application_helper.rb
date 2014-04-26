@@ -12,4 +12,7 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def time_format(datetime)
+    a = datetime.strftime('%d.%m.%Y %H:%M') unless datetime.blank?
+  end
 end

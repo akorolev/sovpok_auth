@@ -24,7 +24,7 @@ class Lot < ActiveRecord::Base
 
 
   validates :condition, presence: true, length: { minimum: 15, maximum: 1000 }
-  validates :terms_of_service, acceptance: true
+#  validates :terms_of_service, acceptance: true
 
 
   for lvl in 0..CategoriesController::LVL_MASK.length do 
