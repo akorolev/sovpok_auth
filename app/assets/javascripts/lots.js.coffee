@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 //= require third_party/jquery.datetimepicker
 //= require third_party/jquery.chained
+//= require third_party/jquery.maskMoney
 
 $("#datetimepicker").datetimepicker
   format:'d.m.Y H:i'
@@ -37,6 +38,10 @@ $ ->
   $('#show_pickup').on "change", ->
       $("#pickup").toggle  @checked
 	  return
-  return
 
- 
+$(".maskmoney").maskMoney
+  prefix: "$ "
+
+$(".maskpercent").maskMoney
+  suffix: " %"
+  precision: "0"
