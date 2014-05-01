@@ -95,6 +95,62 @@ SimpleForm.setup do |config|
     end
   end
 
+  config.wrappers :label_prefix_input, class: :input,
+    hint_class: :field_with_hint, error_class: :error do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+
+    b.wrapper :tag => 'div', :class => 'row' do |brow|
+    ## Inputs
+      brow.wrapper :tag => 'div', :class => 'small-2 columns' do |blabel|
+        blabel.use :label
+        blabel.use :help
+      end
+      brow.wrapper :tag => 'div', :class => 'small-2 columns' do |bprfinp|
+        bprfinp.wrapper :tag => 'div', :class => 'row collapse' do |brow_coll|
+          brow_coll.wrapper :tag => 'div', :class => 'small-2 columns' do |bprefix|
+            bprefix.use :prefix
+          end
+          brow_coll.wrapper :tag => 'div', :class => 'small-10 columns' do |binput|
+            binput.use :input
+            binput.use :hint,  wrap_with: { tag: :span, class: :hint }
+            binput.use :error, wrap_with: { tag: :span, class: 'error' }
+          end
+
+        end
+      end
+      brow.wrapper :tag => 'div', :class => 'small-2 columns' do |brest|
+
+      end
+    end
+  end
+
+  config.wrappers :prefix_input, class: :input,
+    hint_class: :field_with_hint, error_class: :error do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+
+    b.wrapper :tag => 'div', :class => 'row collapse' do |brow|
+      brow.wrapper :tag => 'div', :class => 'small-2 columns' do |bprefix|
+        bprefix.use :prefix
+      end
+      brow.wrapper :tag => 'div', :class => 'small-10 columns' do |binput|
+        binput.use :input
+        binput.use :hint,  wrap_with: { tag: :span, class: :hint }
+        binput.use :error, wrap_with: { tag: :span, class: 'error' }
+      end
+    end
+  end
+
+
   config.wrappers :no_divs_labels, class: :input,
     hint_class: :field_with_hint, error_class: :error do |b|
     b.use :html5
@@ -119,7 +175,6 @@ SimpleForm.setup do |config|
 
   # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :default
-
   # Define the way to render check boxes / radio buttons with labels.
   # Defaults to :nested for bootstrap config.
   #   inline: input + label
