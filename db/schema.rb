@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408234343) do
+ActiveRecord::Schema.define(version: 20140502103331) do
 
   create_table "addresses", force: true do |t|
     t.string   "name"
@@ -85,6 +85,42 @@ ActiveRecord::Schema.define(version: 20140408234343) do
 
   add_index "lots", ["category_id"], name: "index_lots_on_category_id"
   add_index "lots", ["user_id"], name: "index_lots_on_user_id"
+
+  create_table "product_images", force: true do |t|
+    t.string   "caption"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  add_index "product_images", ["product_id"], name: "index_product_images_on_product_id"
+
+  create_table "products", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.decimal  "price",              precision: 8, scale: 2
+    t.boolean  "pickup_allowed"
+    t.text     "pickup_description"
+    t.decimal  "postage_val1",       precision: 8, scale: 2
+    t.string   "postage_info1"
+    t.decimal  "postage_val2",       precision: 8, scale: 2
+    t.string   "postage_info2"
+    t.decimal  "postage_val3",       precision: 8, scale: 2
+    t.string   "postage_info3"
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.integer  "lot_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "products", ["category_id"], name: "index_products_on_category_id"
+  add_index "products", ["lot_id"], name: "index_products_on_lot_id"
+  add_index "products", ["user_id"], name: "index_products_on_user_id"
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id"

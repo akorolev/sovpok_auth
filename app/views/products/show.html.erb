@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @product.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+
+<p>
+  <strong>Pickup allowed:</strong>
+  <%= @product.pickup_allowed %>
+</p>
+
+<p>
+  <strong>Pickup description:</strong>
+  <%= @product.pickup_description %>
+</p>
+
+<p>
+  <strong>Postage val1:</strong>
+  <%= @product.postage_val1 %>
+</p>
+
+<p>
+  <strong>Postage info1:</strong>
+  <%= @product.postage_info1 %>
+</p>
+
+<p>
+  <strong>Postage val2:</strong>
+  <%= @product.postage_val2 %>
+</p>
+
+<p>
+  <strong>Postage info2:</strong>
+  <%= @product.postage_info2 %>
+</p>
+
+<p>
+  <strong>Postage val3:</strong>
+  <%= @product.postage_val3 %>
+</p>
+
+<p>
+  <strong>Postage info3:</strong>
+  <%= @product.postage_info3 %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @product.user %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @product.category %>
+</p>
+
+<p>
+  <strong>Lot:</strong>
+  <%= @product.lot %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

@@ -1,4 +1,6 @@
 SovpokAuth::Application.routes.draw do
+  resources :products
+
   resources :lots
 
   resources :addresses

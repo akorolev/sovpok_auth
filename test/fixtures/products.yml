@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  price: 
+  price: 
+  pickup_allowed: false
+  pickup_description: MyText
+  postage_val1: 
+  postage_val1: 
+  postage_info1: MyString
+  postage_val2: 
+  postage_val2: 
+  postage_info2: MyString
+  postage_val3: 
+  postage_val3: 
+  postage_info3: MyString
+  user_id: 
+  category_id: 
+  lot_id: 
+
+two:
+  title: MyString
+  description: MyText
+  price: 
+  price: 
+  pickup_allowed: false
+  pickup_description: MyText
+  postage_val1: 
+  postage_val1: 
+  postage_info1: MyString
+  postage_val2: 
+  postage_val2: 
+  postage_info2: MyString
+  postage_val3: 
+  postage_val3: 
+  postage_info3: MyString
+  user_id: 
+  category_id: 
+  lot_id: 

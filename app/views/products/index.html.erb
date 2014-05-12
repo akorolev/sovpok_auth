@@ -1,0 +1,53 @@
+<h1>Listing products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Pickup allowed</th>
+      <th>Pickup description</th>
+      <th>Postage val1</th>
+      <th>Postage info1</th>
+      <th>Postage val2</th>
+      <th>Postage info2</th>
+      <th>Postage val3</th>
+      <th>Postage info3</th>
+      <th>User</th>
+      <th>Category</th>
+      <th>Lot</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.title %></td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+        <td><%= product.pickup_allowed %></td>
+        <td><%= product.pickup_description %></td>
+        <td><%= product.postage_val1 %></td>
+        <td><%= product.postage_info1 %></td>
+        <td><%= product.postage_val2 %></td>
+        <td><%= product.postage_info2 %></td>
+        <td><%= product.postage_val3 %></td>
+        <td><%= product.postage_info3 %></td>
+        <td><%= product.user %></td>
+        <td><%= product.category %></td>
+        <td><%= product.lot %></td>
+        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Edit', edit_product_path(product) %></td>
+        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product', new_product_path %>
