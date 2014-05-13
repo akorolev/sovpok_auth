@@ -22,6 +22,8 @@ gem "paperclip"
 gem 'jbuilder'
 gem 'friendly_id'
 gem 'font-awesome-rails'
+gem 'jquery-fileupload-rails'
+
 
 group :development do
   gem 'better_errors'

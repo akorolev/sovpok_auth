@@ -1,5 +1,10 @@
 SovpokAuth::Application.routes.draw do
   resources :products
+  resources :product_images do
+    collection do
+      post :create_from_uri
+    end
+  end
 
   resources :lots
 

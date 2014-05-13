@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.datepicker
+//= require jquery-fileupload
 
 // Note: Foundation 5 won't work with turbolinks
 //= require foundation
