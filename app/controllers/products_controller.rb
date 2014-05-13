@@ -15,7 +15,6 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
-    3.times {@product.product_images.build} # added this
   end
 
   # GET /products/1/edit

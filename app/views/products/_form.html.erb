@@ -14,16 +14,17 @@
     <%= f.input :postage_val3 %>
     <%= f.input :postage_info3 %>
 
-    <%= f.simple_fields_for :product_images do |builder| %>
-	  <% if builder.object.new_record? %>
-	    <%= builder.input :caption, label:"Image Caption" %>
-		<%= builder.input :photo, as: :file, label:"Image File" %>
-	  <% end %>
-    <% end %>
-
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
+<% end %>
+
+<%= button_tag( "url_button", type: "button") do%>
+    <%= fa_icon("globe lg") %> <span>Add image url</span>
+<% end %>
+<%= text_field_tag("upload_url") %>
+
+<%= simple_form_for(ProductImage.new) do |f| %>
 <% end %>
