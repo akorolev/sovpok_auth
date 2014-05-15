@@ -5,6 +5,10 @@ class ProductImagesController < ApplicationController
   # GET /product_images.json
   def index
     @product_images = ProductImage.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @product_images.map{|image| image.to_jq_upload } }
+    end
   end
 
   # GET /product_images/1
@@ -24,13 +28,14 @@ class ProductImagesController < ApplicationController
   # POST /product_images
   # POST /product_images.json
   def create
-    @product_image = ProductImage.new(product_image_params)
+    @product_image = ProductImage.new()
+    @product_image.photo = product_image_params[:photo][0]
     save_and_render
   end
 
   def create_from_uri
     @product_image = ProductImage.new
-    @product_image.picture_from_url(params[:photo_url])
+    @product_image.picture_from_url(params[:url])
     save_and_render
   end
 
@@ -84,6 +89,6 @@ class ProductImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_image_params
-      params.require(:product_image).permit(:photo)
+      params.require(:product_image).permit(:photo => [])
     end
 end

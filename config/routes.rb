@@ -5,6 +5,8 @@ SovpokAuth::Application.routes.draw do
       post :create_from_uri
     end
   end
+  post "products/product_images" => "product_images#create"
+  post "products/product_images/create_from_uri" => "product_images#create_from_uri"
 
   resources :lots
 
