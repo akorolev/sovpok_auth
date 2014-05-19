@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:create, :show, :edit, :update, :destroy]
 
   # GET /products
   # GET /products.json
@@ -15,17 +15,18 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+    # TODO Add status and user ID and lot Id !!!
+    @product.save!(validate:false)
+    redirect_to action: 'edit', id: @product.id
   end
 
   # GET /products/1/edit
   def edit
   end
-
+  # TODO DELETE POST CREATE !!!
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
-
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -69,6 +70,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :description, :price, :pickup_allowed, :pickup_description, :postage_val1, :postage_val1, :postage_info1, :postage_val2, :postage_val2, :postage_info2, :postage_val3, :postage_val3, :postage_info3, :user_id, :category_id, :lot_id)
+      params.require(:product).permit( :title, :description, :price, :pickup_allowed, :pickup_description, :postage_val1, :postage_val1, :postage_info1, :postage_val2, :postage_val2, :postage_info2, :postage_val3, :postage_val3, :postage_info3, :user_id, :category_id, :lot_id)
     end
 end

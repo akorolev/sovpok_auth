@@ -29,7 +29,7 @@ url_submit_error = (data) ->
   obj = undefined
   $("#url_button").attr "disabled", false
   obj = $.parseJSON(data.responseText)
-  $("#upload_url").val "Image " + obj.upload.toString()
+  $("#upload_url").val "Image " + obj.photo.toString()
   return
 
 fileUploadErrors =
@@ -43,10 +43,12 @@ fileUploadErrors =
 $ ->
   $("#fileupload").fileupload
     autoUpload: true
-    maxFileSize: 500000
+    maxFileSize: 2100000
     acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+    formData:
+      product_id: $("#product_id").val()
 
-  $.getJSON $("#fileupload").prop("action"), (files) ->
+  $.getJSON $("#fileupload").prop("action"), {product_id: $("#product_id").val()}, (files) ->
     fu = undefined
     template = undefined
     fu = $("#fileupload").data("blueimpFileupload")

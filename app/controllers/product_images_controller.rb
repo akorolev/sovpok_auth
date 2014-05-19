@@ -4,7 +4,7 @@ class ProductImagesController < ApplicationController
   # GET /product_images
   # GET /product_images.json
   def index
-    @product_images = ProductImage.all
+    @product_images = ProductImage.where(product_id: params[:product_id])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @product_images.map{|image| image.to_jq_upload } }
@@ -30,6 +30,7 @@ class ProductImagesController < ApplicationController
   def create
     @product_image = ProductImage.new()
     @product_image.photo = product_image_params[:photo][0]
+    @product_image.product_id = params[:product_id]
     save_and_render
   end
 

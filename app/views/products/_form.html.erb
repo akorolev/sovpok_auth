@@ -13,6 +13,7 @@
     <%= f.input :postage_info2 %>
     <%= f.input :postage_val3 %>
     <%= f.input :postage_info3 %>
+    <%= f.input :id, :as => :hidden %>
 
   </div>
 
@@ -20,7 +21,6 @@
     <%= f.button :submit %>
   </div>
 <% end %>
-
 
 <%= simple_form_for(ProductImage.new, html: { id: :fileupload}) do |f| %>
 
@@ -33,7 +33,7 @@
     <i class="icon-plus icon-white"></i>
     <span>Add files...</span>
       <%= f.file_field :photo, multiple: true %>
-  </span>
+    </span>
 
     <!-- The loading indicator is shown during image processing -->
     <div class="fileupload-loading"></div>
@@ -101,7 +101,6 @@
           <i class="icon-trash icon-white"></i>
           <span>{%=locale.fileupload.destroy%}</span>
         </button>
-        <input type="checkbox" name="delete" value="1">
       </td>
     </tr>
     {% } %}
