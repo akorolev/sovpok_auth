@@ -1,5 +1,5 @@
 SovpokAuth::Application.routes.draw do
-  resources :products
+  resources :products, :except => [:create]
   resources :product_images do
     collection do
       post :create_from_uri

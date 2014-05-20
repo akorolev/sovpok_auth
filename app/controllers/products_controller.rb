@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:create, :show, :edit, :update, :destroy]
+  before_action :set_product, only: [ :show, :edit, :update, :destroy]
 
   # GET /products
   # GET /products.json
@@ -22,20 +22,6 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
-  end
-  # TODO DELETE POST CREATE !!!
-  # POST /products
-  # POST /products.json
-  def create
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @product }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /products/1

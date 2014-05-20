@@ -1,5 +1,6 @@
 <%= simple_form_for @lot,  wrapper: :label_hor do |f| %>
   <%= f.error_notification %>
+  <%#= TODO remove action name print %>
   <%= action_name %>
   <div class="form-inputs">
     <%= f.input :title, help: true, required: true, placeholder: "Maximum lot title size is 50 characters",  input_html: {:maxlength => 50} %>

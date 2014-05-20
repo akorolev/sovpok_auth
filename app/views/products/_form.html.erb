@@ -1,49 +1,65 @@
-<%= simple_form_for(@product) do |f| %>
+<%= simple_form_for@product, wrapper: :label_hor do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :price %>
-    <%= f.input :pickup_allowed %>
-    <%= f.input :pickup_description %>
-    <%= f.input :postage_val1 %>
-    <%= f.input :postage_info1 %>
-    <%= f.input :postage_val2 %>
-    <%= f.input :postage_info2 %>
-    <%= f.input :postage_val3 %>
-    <%= f.input :postage_info3 %>
-    <%= f.input :id, :as => :hidden %>
+    <%= f.input :title, required: true, placeholder: "Maximum title size is 50 characters",  input_html: {:maxlength => 50} %>
+    <%= f.input :description, placeholder: "Short description for a whole lot", input_html: {rows: 8 } %>
+    <%= f.input :price, prefix: "$", wrapper: :label_prefix_input  %>
+    <%= f.input :pickup_allowed, :input_html => { id: 'show_pickup' } %>
+    <%= f.input :pickup_description, label: false, placeholder: "Pickup instructions. They will be invisible unlless purchase is complete", :input_html => { id: 'pickup', style: "display: none"} %>
 
-  </div>
+    <% for i in 1..3 %>
+        <%= content_tag :div, class: "row" do %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+            <%= content_tag :div, class: "small-2 columns" do %>
+                <%= f.label (i == 1) ? :shipping : " " %>
+            <% end %>
+            <%= content_tag :div, class: "small-2 columns" do %>
+                <%= f.input "postage_val#{i}", prefix: "$", wrapper: :prefix_input %>
+            <% end %>
+            <%= content_tag :div, class: "small-8	columns" do %>
+                <%= f.input "postage_info#{i}", placeholder: "Details", wrapper: :no_divs_labels %>
+            <% end %>
 
-<%= simple_form_for(ProductImage.new, html: { id: :fileupload}) do |f| %>
-
-    <%= button_tag( id: "url_button", type: "button") do%>
-        <%= fa_icon("globe lg") %> <span>Add image url</span>
+        <% end %>
     <% end %>
-    <%= text_field_tag("upload_url") %>
 
-    <span class="btn btn-success fileinput-button">
-    <i class="icon-plus icon-white"></i>
-    <span>Add files...</span>
-      <%= f.file_field :photo, multiple: true %>
-    </span>
-
-    <!-- The loading indicator is shown during image processing -->
-    <div class="fileupload-loading"></div>
-    <br>
-    <!-- The table listing the files available for upload/download -->
-    <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
-    </table>
+    <%= f.input :id, :as => :hidden %>
+  </div>
 
 <% end %>
 
+<%= content_tag :div, class: "row " do %>
+    <%= content_tag :div, class: "small-2 columns" do %>
+        <%= button_tag( id: "url_button", type: "button") do%>
+            <%= fa_icon("globe lg") %> <span>Upload web image</span>
+        <% end %>
+    <% end %>
+    <%= content_tag :div, class: "small-10	columns" do %>
+        <%= text_field_tag("upload_url", nil, placeholder: "Copy image URL here") %>
+    <% end %>
+<% end %>
+
+<%= simple_form_for ProductImage.new, html: { id: :fileupload} do |f| %>
+  <%= content_tag :div, class: "row" do %>
+    <div class="fileUpload button">
+      <%= fa_icon("camera lg") %><span> Upload local images </span>
+      <%= f.file_field :photo, multiple: true, class: "fileField" %>
+    </div>
+  <% end %>
+
+  <!-- The loading indicator is shown during image processing -->
+  <div class="fileupload-loading"></div>
+  <br>
+  <!-- The table listing the files available for upload/download -->
+  <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+  </table>
+
+<% end %>
+
+<%= content_tag :div, class: "row" do %>
+<input type="submit" class="button" onclick="document.forms[0].submit();" />
+<% end %>
 
 
 <!-- The template to display files available for upload -->
