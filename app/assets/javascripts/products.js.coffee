@@ -27,9 +27,15 @@ url_submit_success = (data) ->
 
 url_submit_error = (data) ->
   obj = undefined
+  parent_div = undefined
+  val = undefined
   $("#url_button").attr "disabled", false
   obj = $.parseJSON(data.responseText)
-  $("#upload_url").val "Image " + obj.photo.toString()
+  parent_div = $("#upload_url").parent()
+  val = "Image " + obj.photo.toString()
+  parent_div.append("<span class='error'>"+val+"</span>");
+  $("#upload_url").val ""
+
   return
 
 fileUploadErrors =

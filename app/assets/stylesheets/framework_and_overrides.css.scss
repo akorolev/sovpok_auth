@@ -59,6 +59,10 @@ section {
   @extend .row;
   margin-top: 20px;
   }
+.row, section {
+  max-width: 120rem;
+}
+
 
 .button.social-login {
   font-weight: bold !important;
