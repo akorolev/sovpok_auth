@@ -13,3 +13,15 @@
  *= require_tree .
  */
 @import "font-awesome";
+
+/* DELETE ME !!!!!!!!!!!!!!!!!*/
+.fb > input[type=radio]{
+  display:none;
+}
+input[type=radio] + i{
+  cursor:pointer;
+  color: black;
+}
+input[type=radio]:checked + i{
+  color: gold;
+}
