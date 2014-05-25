@@ -88,3 +88,10 @@ $ ->
     return
 
   return
+
+$("#submit_product").click ->
+  value = $("input[name=\"main_image\"]:checked").val()
+  input = $("<input>").attr("type", "hidden").attr("name", "display_image").val(value)
+  $(document.forms[0].id).append $(input)
+  document.forms[0].submit()
+  return
