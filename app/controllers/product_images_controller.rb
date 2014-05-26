@@ -4,7 +4,7 @@ class ProductImagesController < ApplicationController
   # GET /product_images
   # GET /product_images.json
   def index
-    @product_images = ProductImage.where(product_id: params[:product_id])
+    @product_images = ProductImage.where(product_id: params[:product_id]).order("top desc")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @product_images.map{|image| image.to_jq_upload } }

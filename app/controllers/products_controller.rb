@@ -29,6 +29,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       puts "=-=-=-=-=-=-=-=-=-=-=-=-="
+      update_top(@product, params[:product][:top_image].to_i)
       puts params.inspect
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
@@ -37,6 +38,13 @@ class ProductsController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def update_top(product, top_image_id)
+    product.product_images.each do |image|
+      image.update top: false if image.top
+      image.update top: true if top_image_id == image.id
     end
   end
 

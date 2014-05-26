@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140516105318) do
+ActiveRecord::Schema.define(version: 20140526114433) do
 
   create_table "addresses", force: true do |t|
     t.string   "name"
@@ -95,8 +95,10 @@ ActiveRecord::Schema.define(version: 20140516105318) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.boolean  "top"
   end
 
+  add_index "product_images", ["product_id", "top"], name: "index_product_images_on_product_id_and_top"
   add_index "product_images", ["product_id"], name: "index_product_images_on_product_id"
 
   create_table "products", force: true do |t|

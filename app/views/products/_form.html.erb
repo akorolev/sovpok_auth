@@ -28,6 +28,7 @@
       <% end %>
     </fieldset>
     <%= f.input :id, :as => :hidden %>
+    <%= f.input :top_image, :as => :hidden %>
   </div>
 
 <% end %>
@@ -106,7 +107,7 @@
           </div>
 
           <label class="main_image" for="{%=file.id%}" style="position: absolute; top:10px; left: 15px;">
-            <input id="{%=file.id%}" type="radio" name="main_image" value="{%=file.id%}" />
+            <input id="{%=file.id%}" type="radio" name="main_image" value="{%=file.id%}" checked="{%=file.top%}"/>
             <i class="fa fa-star fa-lg"></i>
           </label>
 
