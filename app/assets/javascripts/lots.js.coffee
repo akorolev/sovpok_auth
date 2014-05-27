@@ -1,8 +1,6 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-//= require third_party/jquery.datetimepicker
-//= require third_party/jquery.chained
 
 $("#datetimepicker").datetimepicker
   format:'d.m.Y H:i'
@@ -35,8 +33,8 @@ $ ->
 
 $ ->
   $('#show_pickup').on "change", ->
-      $("#pickup").toggle  @checked
-	  return
+    $("#pickup").toggle @checked
+    return
   return
 
  

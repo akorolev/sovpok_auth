@@ -30,6 +30,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       puts "=-=-=-=-=-=-=-=-=-=-=-=-="
       update_top(@product, params[:product][:top_image].to_i)
+      @product.category_id = 0
       puts params.inspect
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
@@ -66,6 +67,14 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit( :title, :description, :price, :pickup_allowed, :pickup_description, :postage_val1, :postage_val1, :postage_info1, :postage_val2, :postage_val2, :postage_info2, :postage_val3, :postage_val3, :postage_info3, :user_id, :category_id, :lot_id)
+      params_list = [:title, :description, :price, :pickup_allowed, :pickup_description, :user_id, :category_id, :lot_id]
+      for i in 1..3
+        params_list.push("postage_val#{i}", "postage_info#{i}")
+      end
+      for i in 0..CategoriesController::LVL_MASK.length
+        params_list.push("sub_category_lvl#{i}")
+      end
+
+      params.require(:product).permit(params_list)
     end
 end

@@ -4,12 +4,27 @@
   <div class="form-inputs">
     <%= f.input :title, required: true, placeholder: "Maximum title size is 50 characters",  input_html: {:maxlength => 50} %>
     <%= f.input :description, placeholder: "Short description for a whole lot", input_html: {rows: 4 } %>
-    <%= f.input :price, prefix: "$", wrapper: :label_prefix_input  %>
+    <%= f.input :price, required: true, prefix: "$", wrapper: :label_prefix_input  %>
+    <%= content_tag :div, class: "row" do %>
+        <%= content_tag :div, class: "small-2 columns" do %>
+            <% category_label_class = @product.errors[:category_id].empty? ? "" : "error" %>
+            <%= f.label :sub_category_lvl0, "Default category", class: category_label_class  %>
+        <% end %>
+
+        <% for i in 0..CategoriesController::LVL_MASK.length %>
+            <%= content_tag :div, class: "small-3 columns" do %>
+                <%= f.input "sub_category_lvl#{i}", as: :select, wrapper: :no_divs_labels do %>
+                    <% f.select "sub_category_lvl#{i}", @product.send("sub_category_lvl#{i}"), {}, {size: 5}%>
+                <% end %>
+            <% end %>
+        <% end %>
+
+    <% end %>
 
     <fieldset>
       <legend>Delivery and pickup</legend>
       <%= f.input :pickup_allowed, :input_html => { id: 'show_pickup' } %>
-      <%= f.input :pickup_description, label: false, placeholder: "Pickup instructions. They will be invisible unlless purchase is complete", :input_html => { id: 'pickup', style: "display: none"} %>
+      <%= f.input :pickup_description, label: false, placeholder: "Pickup instructions", :input_html => { id: 'pickup', style: "display: none"} %>
 
       <% for i in 1..3 %>
         <%= content_tag :div, class: "row" do %>
@@ -58,7 +73,7 @@
   <div class="fileupload-loading"></div>
   <br>
   <!-- The table listing the files available for upload/download -->
-  <ul class="small-block-grid-3 medium-block-grid-4 large-block-grid-6 files"  data-toggle="modal-gallery" data-target="#modal-gallery">
+  <ul class="small-block-grid-3 medium-block-grid-4 large-block-grid-6 files"  data-toggle="modal-gallery" data-target="#modal-gallery"> </ul>
   <% end %>
 <% end %>
 </fieldset>
@@ -107,7 +122,7 @@
           </div>
 
           <label class="main_image" for="{%=file.id%}" style="position: absolute; top:10px; left: 15px;">
-            <input id="{%=file.id%}" type="radio" name="main_image" value="{%=file.id%}" checked="{%=file.top%}"/>
+            <input id="{%=file.id%}" type="radio" name="main_image" value="{%=file.id%}" {% if (file.top) { %} checked="true" {% } %}/>
             <i class="fa fa-star fa-lg"></i>
           </label>
 

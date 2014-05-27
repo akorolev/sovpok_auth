@@ -36,6 +36,7 @@ class ProductImagesController < ApplicationController
 
   def create_from_uri
     @product_image = ProductImage.new
+    @product_image.product_id = params[:product]
     @product_image.picture_from_url(params[:url])
     save_and_render
   end

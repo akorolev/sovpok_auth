@@ -1,28 +1,32 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+
+$ ->
+  # For jquery.chained.js
+  $("#product_sub_category_lvl1").chained "#product_sub_category_lvl0"
+  $("#product_sub_category_lvl2").chained "#product_sub_category_lvl1"
+  $("#product_sub_category_lvl3").chained "#product_sub_category_lvl2"
+  $("#product_sub_category_lvl4").chained "#product_sub_category_lvl3"
+  $("#product_sub_category_lvl5").chained "#product_sub_category_lvl4"
+  $("#product_sub_category_lvl6").chained "#product_sub_category_lvl5"
+
 fileUploadErrors = undefined
 url_submit_error = undefined
 url_submit_success = undefined
 
 url_submit_success = (data) ->
   content = undefined
+  fu = undefined
+  template = undefined
   content = $(data).find("#url")
   $("#result").empty().append content
   $("#url_button").attr "disabled", false
   $("#upload_url").val ""
-  $.getJSON $("#fileupload").prop("action"), (files) ->
-    fu = undefined
-    template = undefined
-    fu = $("#fileupload").data("blueimpFileupload")
-    template = undefined
-    fu._adjustMaxNumberOfFiles -files.length
-    console.log files
-    template = fu._renderDownload([files[files.length - 1]]).appendTo($("#fileupload .files"))
-    fu._reflow = fu._transition and template.length and template[0].offsetWidth
-    template.addClass "in"
-    return
-
+  fu = $("#fileupload").data("blueimpFileupload")
+  template = fu._renderDownload([data.files[0]]).appendTo($("#fileupload .files"))
+  fu._reflow = fu._transition and template.length and template[0].offsetWidth
+  template.addClass "in"
   return
 
 url_submit_error = (data) ->
