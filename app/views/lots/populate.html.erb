@@ -1,0 +1,17 @@
+<ul class="small-block-grid-3 medium-block-grid-4 large-block-grid-6">
+  <% @lot_products.each do |prod| %>
+      <li style="position: relative; width: 250px; height: 280px;" class="template-download">
+        <p><%= prod.title %></p>
+        <%= image_tag prod.product_images.first.photo.url(:medium) %>
+        <ul class="button-group radius">
+          <li><a href="#" class="button tiny">Edit</a></li>
+          <li><a href="#" class="button tiny">Clone</a></li>
+          <li><a href="#" class="button tiny">Delete</a></li>
+        </ul>
+      </li>
+  <% end %>
+  <li style="position: relative; width: 250px; height: 280px;" class="template-download">
+    <%= link_to image_tag("new_product.jpeg", :border => 0), {:action => 'new', :controller => 'products', :lot_id => @lot.id} %>
+  </li>
+
+</ul>

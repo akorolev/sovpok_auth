@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = Product.new
+    @product = Product.new(lot_id: params[:lot_id])
     # TODO Add status and user ID and lot Id !!!
     @product.save!(validate:false)
     redirect_to action: 'edit', id: @product.id

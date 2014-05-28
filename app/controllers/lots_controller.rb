@@ -1,5 +1,5 @@
 class LotsController < ApplicationController
-  before_action :set_lot, only: [:show, :edit, :update, :destroy]
+  before_action :set_lot, only: [:show, :edit, :update, :destroy, :populate]
 
   # GET /lots
   # GET /lots.json
@@ -60,6 +60,10 @@ class LotsController < ApplicationController
       format.html { redirect_to lots_url }
       format.json { head :no_content }
     end
+  end
+
+  def populate
+    @lot_products = Product.where(lot_id: @lot.id)
   end
 
   private

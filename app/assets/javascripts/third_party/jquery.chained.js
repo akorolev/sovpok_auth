@@ -28,10 +28,10 @@
             $(parent_selector).each(function() {
                 $(this).bind("change", function() {
                     updateChildren();
-                    if ($("option:selected", this).hasClass("last")) {
+/*                    if ($("option:selected", this).hasClass("last")) {
                        alert("last");
                     }
-
+*/
                 });
 
                 /* Force IE to see something selected on first page load, */

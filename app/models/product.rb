@@ -4,6 +4,16 @@ class Product < ActiveRecord::Base
   belongs_to :lot
   has_many :product_images, -> { order('top desc').limit(20) }, :dependent => :destroy
   accepts_nested_attributes_for :product_images, :allow_destroy => true
+
+  validates :title, presence: true, length: { maximum: 50 }
+  validates :description, length: { maximum: 1000 }
+  validates :price, presence: true, numericality: true
+  validates :postage_val1, numericality: true, allow_blank: true
+  validates :postage_info1, length: { maximum: 50 }, allow_blank: true
+  validates :postage_val2, numericality: true, allow_blank: true
+  validates :postage_info2, length: { maximum: 50 }, allow_blank: true
+  validates :postage_val3, numericality: true, allow_blank: true
+  validates :postage_info3, length: { maximum: 50 }, allow_blank: true
   validate do
     check_category_id
   end

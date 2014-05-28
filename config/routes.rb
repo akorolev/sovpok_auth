@@ -1,5 +1,6 @@
 SovpokAuth::Application.routes.draw do
   resources :products, :except => [:create]
+  # todo restrict number of methods for product_images
   resources :product_images do
     collection do
       post :create_from_uri
@@ -8,7 +9,11 @@ SovpokAuth::Application.routes.draw do
   post "products/product_images" => "product_images#create"
   post "products/*product/product_images/create_from_uri" => "product_images#create_from_uri"
 
-  resources :lots
+  resources :lots do
+    member do
+      get :populate
+    end
+  end
 
   resources :addresses
   resources :categories, :except => [:show]
