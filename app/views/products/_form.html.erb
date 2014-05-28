@@ -116,7 +116,9 @@
         <div class="error">{%=locale.fileupload.error%} {%=locale.fileupload.errors[file.error] || file.error%}</div>
         {% } else { %}
         {% if (file.thumbnail_url) { %}
-          <img src="{%=file.thumbnail_url%}" style="position: absolute:top 10px">
+          <div style="height: 200px">
+            <img src="{%=file.thumbnail_url%}" style="position: absolute:top 10px">
+          </div>
           <div class="delete">
             <button data-url="{%=file.delete_url%}" data-type="{%=file.delete_type%}" class="" style="position: absolute; top:35px; left: 12px; background:transparent; color:red; padding:0;"><i class="fa fa-trash-o fa-lg"></i></button>
           </div>
