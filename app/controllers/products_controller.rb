@@ -13,9 +13,14 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/new
+  # TODO Add status and user ID !!!
+  # TODO Check user ID of lot_id!
   def new
-    @product = Product.new(lot_id: params[:lot_id])
-    # TODO Add status and user ID and lot Id !!!
+    @product = Product.new(lot_id: params[:lot_id]) if params[:lot_id]
+    if params[:copy_product_id]
+      @product = Product.find(params[:copy_product_id]).dup
+      @product.title = "COPY " + @product.title.to_s
+    end
     @product.save!(validate:false)
     redirect_to action: 'edit', id: @product.id
   end

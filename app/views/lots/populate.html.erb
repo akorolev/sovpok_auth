@@ -1,6 +1,6 @@
 <ul class="small-block-grid-3 medium-block-grid-4 large-block-grid-6">
   <% @lot_products.each do |prod| %>
-      <li style="position: relative; width: 300px; height: 500px;" >
+      <li style="position: relative; width: 320px; height: 500px;" >
         <ul class="pricing-table">
         <li class="title"><%= prod.title %></li>
         <li class="price">$<%= prod.price %></li>
@@ -12,9 +12,23 @@
 
         <li class="cta-button">
           <ul class="button-group radius">
-            <li><a href="#" class="button tiny">Edit</a></li>
-            <li><a href="#" class="button tiny">Clone</a></li>
-            <li><a href="#" class="button tiny">Delete</a></li>
+            <li>
+              <%=link_to({controller: 'products', action: "edit", id: prod.id}, {class: "button tiny"}) do %>
+                  <i class="fa fa-edit fa-lg"></i>
+                  <span> Edit</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to({controller: 'products', action: "new", copy_product_id: prod.id}, {class: "button tiny success"}) do %>
+                  <i class="fa fa-files-o fa-lg"></i> <span> Clone</span>
+              <% end %>
+            </li>
+            <li>
+              <%=link_to(prod, method: :delete, data: { confirm: 'Are you sure?' }, class: "button tiny alert") do %>
+                <i class="fa fa-trash-o fa-lg"></i>
+                <span> Delete</span>
+              <% end %>
+            </li>
           </ul>
         </li>
         </ul>
