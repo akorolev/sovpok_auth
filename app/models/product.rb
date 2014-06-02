@@ -16,8 +16,8 @@ class Product < ActiveRecord::Base
   validates :postage_info3, length: { maximum: 50 }, allow_blank: true
   validate do
     check_category_id
+    check_image_presence
   end
-
 
   def top_image
   end
@@ -47,7 +47,6 @@ class Product < ActiveRecord::Base
       return if sub_category.to_i == 0
       write_attribute(:category_id, sub_category) if read_attribute(:category_id).to_i < sub_category.to_i
     end
-
   end
 
   private
@@ -63,6 +62,10 @@ class Product < ActiveRecord::Base
       errors.add("sub_category_lvl#{category.level + 1}", "Please select subcategory")
       errors.add(:category_id, "Please select subcategory")
     end
+  end
+
+  def check_image_presence
+      errors.add(:image, "Please add product images") if ProductImage.find_by(product_id: id).nil?
   end
 
 end

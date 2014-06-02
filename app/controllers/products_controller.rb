@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [ :show, :edit, :update, :destroy]
-
+  before_action :save_location, only: [:new, :edit, :destroy]
   # GET /products
   # GET /products.json
   def index
@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
       @product.category_id = 0
       puts params.inspect
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to session.delete(:return_to), notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -59,7 +59,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url }
+      format.html { redirect_to session.delete(:return_to) }
       format.json { head :no_content }
     end
   end
@@ -81,5 +81,10 @@ class ProductsController < ApplicationController
       end
 
       params.require(:product).permit(params_list)
+    end
+    def save_location
+      puts "+________LOCATION  ________________+"
+      puts request.referer
+      session[:return_to] ||= request.referer
     end
 end

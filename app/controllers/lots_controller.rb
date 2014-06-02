@@ -25,7 +25,6 @@ class LotsController < ApplicationController
   # POST /lots.json
   def create
     @lot = Lot.new(lot_params)
-    puts lot_params.inspect
     respond_to do |format|
       if @lot.save
         format.html { redirect_to @lot, notice: 'Lot was successfully created.' }
@@ -74,13 +73,7 @@ class LotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lot_params
-      params_list = [:title, :description, :end_date, :prepay, :fee, :min_order, :pickup_allowed, :pickup_description, :source, :serial, :keywords, :status, :category_id, :user_id, :condition,:terms_of_service]
-      for i in 1..3
-        params_list.push("postage_val#{i}", "postage_info#{i}")
-      end
-      for i in 0..CategoriesController::LVL_MASK.length
-        params_list.push("sub_category_lvl#{i}")
-      end
+      params_list = [:title, :description, :prepay, :fee, :min_order, :source, :condition, :duration, :delivery_time]
       params.require(:lot).permit(params_list)
     end
 end

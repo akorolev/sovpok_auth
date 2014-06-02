@@ -1,4 +1,4 @@
-<%= simple_form_for@product, wrapper: :label_hor do |f| %>
+<%= simple_form_for @product, wrapper: :label_hor do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -50,7 +50,12 @@
 
 <fieldset>
   <legend>Images</legend>
-<%= content_tag :div, class: "row" do %>
+ <% if @product.errors.messages[:image] %>
+      <%= content_tag :span, class: "error" do %>
+          <%= @product.errors.messages[:image][0] %>
+      <% end %>
+ <% end %>
+ <%= content_tag :div, class: "row" do %>
     <%= content_tag :div, class: "small-2 columns" do %>
         <%= button_tag( id: "url_button", type: "button") do%>
             <%= fa_icon("globe lg") %> <span>Upload web images</span>
@@ -62,6 +67,7 @@
 <% end %>
 
 <%= simple_form_for ProductImage.new, html: { id: :fileupload} do |f| %>
+
   <%= content_tag :div, class: "row" do %>
     <div class="fileUpload button">
       <%= fa_icon("camera lg") %><span> Upload local images </span>
