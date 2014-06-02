@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
     @product = Product.new(lot_id: params[:lot_id]) if params[:lot_id]
     if params[:copy_product_id]
       @product = Product.find(params[:copy_product_id]).dup
-      @product.title = "COPY " + @product.title.to_s
+      @product.title = "[COPY] " + @product.title.to_s
     end
     @product.save!(validate:false)
     redirect_to action: 'edit', id: @product.id
