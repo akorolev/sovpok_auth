@@ -1,14 +1,11 @@
-<!--TODO 1. Add lot information, lot edit and lot start
-         2. New item is ugly make it nice -->
+<!--TODO 1. Add lot information, lot edit and lot start -->
 
 <ul class="small-block-grid-3 medium-block-grid-4 large-block-grid-6">
   <% @lot_products.each do |prod| %>
-
-
       <li style="position: relative; width: 320px; height: 500px;" >
         <ul class="pricing-table">
         <li class="title" style="height: 62px;"><%= prod.title %></li>
-        <li class="price"><%= number_to_currency(prod.price, :unit => "$")%></li>
+        <li class="price"><%= number_to_currency(prod.price, :unit => '$')%></li>
         <li class="bullet-item">
           <div style="height: 200px">
             <%= image_tag prod.product_images.first.photo.url(:medium) %>
@@ -25,7 +22,7 @@
             </li>
             <li>
               <%= link_to({controller: 'products', action: "new", copy_product_id: prod.id}, {class: "button tiny success"}) do %>
-                  <i class="fa fa-files-o fa-lg"></i> <span> Clone</span>
+                  <i class="fa fa-files-o fa-lg"></i> <span> Copy</span>
               <% end %>
             </li>
             <li>
@@ -39,8 +36,24 @@
         </ul>
       </li>
   <% end %>
-  <li style="position: relative; width: 250px; height: 280px;" >
-    <%= link_to image_tag("new_product.jpeg", :border => 0), {:action => 'new', :controller => 'products', :lot_id => @lot.id} %>
-  </li>
+      <li style="position: relative; width: 320px; height: 500px;" >
+        <ul class="pricing-table">
+          <li class="title" style="height: 62px;">New product</li>
+          <li class="price"> &nbsp;</li>
 
+          <li class="bullet-item">
+            <div style="height: 200px">
+               <%= link_to image_tag("new_product.jpeg", :border => 0), {:action => 'new', :controller => 'products', :lot_id => @lot.id} %>
+            </div>
+          </li>
+          <li class="cta-button">
+            <%=link_to({controller: 'products', action: "new"}, {class: "button success expand tiny"}) do %>
+                <i class="fa fa-plus fa-lg"></i>
+                <span> Add new product </span>
+            <% end %>
+
+          </li>
+
+        </ul>
+      </li>
 </ul>

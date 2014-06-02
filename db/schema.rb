@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526114433) do
+ActiveRecord::Schema.define(version: 20140601103852) do
 
   create_table "addresses", force: true do |t|
     t.string   "name"
@@ -60,30 +60,21 @@ ActiveRecord::Schema.define(version: 20140526114433) do
   create_table "lots", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "end_date"
     t.integer  "prepay"
     t.integer  "fee"
-    t.decimal  "min_order",          precision: 8, scale: 2
-    t.boolean  "pickup_allowed"
-    t.text     "pickup_description"
-    t.decimal  "postage_val1",       precision: 8, scale: 2
-    t.string   "postage_info1"
-    t.decimal  "postage_val2",       precision: 8, scale: 2
-    t.string   "postage_info2"
-    t.decimal  "postage_val3",       precision: 8, scale: 2
-    t.string   "postage_info3"
+    t.decimal  "min_order",     precision: 8, scale: 2
     t.string   "source"
     t.integer  "serial"
-    t.string   "keywords"
     t.integer  "status"
-    t.integer  "category_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "condition"
+    t.integer  "duration"
+    t.integer  "delivery_time"
+    t.datetime "start_time"
   end
 
-  add_index "lots", ["category_id"], name: "index_lots_on_category_id"
   add_index "lots", ["user_id"], name: "index_lots_on_user_id"
 
   create_table "product_images", force: true do |t|
