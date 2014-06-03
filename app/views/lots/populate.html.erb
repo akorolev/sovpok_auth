@@ -43,11 +43,11 @@
 
           <li class="bullet-item">
             <div style="height: 200px">
-               <%= link_to image_tag("new_product.jpeg", :border => 0), {:action => 'new', :controller => 'products', :lot_id => @lot.id} %>
+               <%= link_to image_tag("new_product.jpeg"), {action: 'new', controller: 'products', lot_id: @lot.id} %>
             </div>
           </li>
           <li class="cta-button">
-            <%=link_to({controller: 'products', action: "new"}, {class: "button success expand tiny"}) do %>
+            <%=link_to({controller: 'products', action: "new",lot_id: @lot.id}, {class: "button success expand tiny"}) do %>
                 <i class="fa fa-plus fa-lg"></i>
                 <span> Add new product </span>
             <% end %>

@@ -62,7 +62,7 @@ class LotsController < ApplicationController
   end
 
   def populate
-    @lot_products = Product.where(lot_id: @lot.id)
+    @lot_products = Product.where(lot_id: @lot.id).where.not(status: nil)
   end
 
   private

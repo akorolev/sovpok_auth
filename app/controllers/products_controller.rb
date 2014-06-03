@@ -13,13 +13,13 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/new
-  # TODO Add status and user ID !!!
   # TODO Check user ID of lot_id!
   def new
     @product = Product.new(lot_id: params[:lot_id]) if params[:lot_id]
     if params[:copy_product_id]
       @product = Product.find(params[:copy_product_id]).dup
       @product.title = "[COPY] " + @product.title.to_s
+      @product.status = nil
     end
     @product.save!(validate:false)
     redirect_to action: 'edit', id: @product.id
@@ -36,6 +36,7 @@ class ProductsController < ApplicationController
       puts "=-=-=-=-=-=-=-=-=-=-=-=-="
       update_top(@product, params[:product][:top_image].to_i)
       @product.category_id = 0
+      @product.status = 1
       puts params.inspect
       if @product.update(product_params)
         format.html { redirect_to session.delete(:return_to), notice: 'Product was successfully updated.' }
