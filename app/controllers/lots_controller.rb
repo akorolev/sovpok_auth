@@ -39,7 +39,6 @@ class LotsController < ApplicationController
   # PATCH/PUT /lots/1
   # PATCH/PUT /lots/1.json
   def update
-    @lot.category_id = 0
     respond_to do |format|
       if @lot.update(lot_params)
         format.html { redirect_to @lot, notice: 'Lot was successfully updated.' }
