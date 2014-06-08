@@ -1,4 +1,19 @@
-<!--TODO 1. Add lot information, lot edit and lot start -->
+<!--TODO Control lot start better  -->
+<!--TODO Move to CSS -->
+
+<% if params[:notice] %>
+<div data-alert class="alert-box success radius" style="position: absolute;  background-color: rgba(0,0,0,0.65);
+        height: 45px;
+        width: 415px;
+        color: #FFF;
+        top: 2px;
+        right: 0px;
+        z-index: 1;">
+<%= params[:notice] %>
+<a href="#" class="close">&times;</a>
+</div>
+<% end %>
+
 <div class="row">
   <h1> <%= @lot.title %></h1>
 </div>
@@ -30,8 +45,13 @@
         <td><%= @lot.prepay %> %</td>
       </tr>
     </table>
+
+    <%= link_to({controller: 'lots', action: "edit", id: @lot.id}, {class: "button round secondary"}) do %>
+        <%=fa_icon("rocket lg")%> Edit lot
+    <% end %>
+
     <% if @lot_products.count > 0%>
-        <%= link_to({controller: 'lots', action: "update", id: @lot.id, status: "1"}, {class: "button round success"}) do %>
+        <%= link_to({controller: 'lots', action: "start_lot", id: @lot.id, status: "1"}, {class: "button round success"}) do %>
             <%=fa_icon("rocket lg")%> Start lot!
         <% end %>
     <% end%>

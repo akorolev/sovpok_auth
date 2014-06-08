@@ -98,3 +98,9 @@ $("#submit_product").click ->
   $("#product_top_image").val(value)
   document.forms[0].submit()
   return
+
+$ ->
+  $('#show_pickup').on "change", ->
+    $("#pickup").toggle @checked
+    return
+  return

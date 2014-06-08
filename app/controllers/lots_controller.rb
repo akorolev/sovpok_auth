@@ -1,5 +1,7 @@
 class LotsController < ApplicationController
-  before_action :set_lot, only: [:show, :edit, :update, :destroy, :populate]
+  before_action :set_lot, only: [:show, :edit, :update, :destroy, :populate, :start_lot]
+  # TODO User checks
+  # TODO Lot
 
   # GET /lots
   # GET /lots.json
@@ -41,11 +43,20 @@ class LotsController < ApplicationController
   def update
     respond_to do |format|
       if @lot.update(lot_params)
-        format.html { redirect_to @lot, notice: 'Lot was successfully updated.' }
+        format.html { redirect_to controller: 'lots' , action: 'populate', id: @lot.id, notice: 'Lot was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
         format.json { render json: @lot.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  def start_lot
+    @lot.status = 1
+    respond_to do |format|
+      if @lot.save
+        format.html { redirect_to controller: 'lots' , action: 'populate', id: @lot.id, notice: 'Lot was successfully started.' }
+        format.json { render action: 'populate', status: :created, location: @lot }
       end
     end
   end

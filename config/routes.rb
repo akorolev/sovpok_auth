@@ -8,6 +8,7 @@ SovpokAuth::Application.routes.draw do
   end
   post "products/product_images" => "product_images#create"
   post "products/*product/product_images/create_from_uri" => "product_images#create_from_uri"
+  get "lots/:id/start_lot" => "lots#start_lot"
 
   resources :lots do
     member do
