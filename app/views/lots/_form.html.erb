@@ -5,7 +5,7 @@
     <%= f.input :description, required: true, placeholder: "Short description for a whole lot", input_html: {rows: 8 } %>
     <%= f.input :condition, required: true, label: "Lot conditions",placeholder: "Lot conditions (payments, refunds, etc)", input_html: {rows: 4 } %>
     <%= f.input :duration, label: "Lot duration",help: true, required: true, prefix: "days", wrapper: :label_prefix_input %>
-    <%= f.input :delivery_time, label: "Maximum delivery time", help: true, required: true, prefix: "days", wrapper: :label_prefix_input %>
+    <%= f.input :delivery_time, label: "Delivery time", help: true, required: true, placeholder: "Range (e.g. 7-15)",prefix: "days", wrapper: :label_prefix_input %>
     <%= f.input :min_order, label: "Activation sum", prefix: "$", wrapper: :label_prefix_input %>
     <%= f.input :prepay, prefix: "%", wrapper: :label_prefix_input %>
 
