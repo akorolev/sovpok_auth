@@ -8,10 +8,11 @@
     <%= f.input :delivery_time, label: "Delivery time", help: true, required: true, placeholder: "Range (e.g. 7-15)",prefix: "days", wrapper: :label_prefix_input %>
     <%= f.input :min_order, label: "Activation sum", prefix: "$", wrapper: :label_prefix_input %>
     <%= f.input :prepay, prefix: "%", wrapper: :label_prefix_input %>
-
-    <%= f.input :source, label: "Supplier", placeholder: "Link to a supplier's web site" %>
-    <%= f.input :fee, label: "Organiser fee", prefix: "%", wrapper: :label_prefix_input %>
-
+    <fieldset>
+      <legend>Optional info about supplier </legend>
+      <%= f.input :source, label: "Supplier", placeholder: "Link to a supplier's web site" %>
+      <%= f.input :fee, label: "Organiser fee", prefix: "%", wrapper: :label_prefix_input %>
+    </fieldset>
   </div>
 
   <div class="form-actions">

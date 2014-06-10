@@ -33,7 +33,7 @@
         <td> <%= @lot.duration %> days</td>
       </tr>
       <tr>
-        <td><%=fa_icon("truck lg") %> Maximum delivery time  </td>
+        <td><%=fa_icon("truck lg") %> Delivery time  </td>
         <td><%= @lot.delivery_time %> days</td>
       </tr>
       <tr>
@@ -44,10 +44,14 @@
         <td>% Prepay </td>
         <td><%= @lot.prepay %> %</td>
       </tr>
+      <tr>
+        <td><%=fa_icon("gift lg") %> Product count </td>
+        <td><%= @lot_products.count %> </td>
+      </tr>
     </table>
 
     <%= link_to({controller: 'lots', action: "edit", id: @lot.id}, {class: "button round secondary"}) do %>
-        <%=fa_icon("rocket lg")%> Edit lot
+        <%=fa_icon("edit lg")%> Edit lot
     <% end %>
 
     <% if @lot_products.count > 0%>

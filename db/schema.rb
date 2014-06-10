@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601103852) do
+ActiveRecord::Schema.define(version: 20140610023442) do
 
   create_table "addresses", force: true do |t|
     t.string   "name"
@@ -62,8 +62,7 @@ ActiveRecord::Schema.define(version: 20140601103852) do
     t.text     "description"
     t.integer  "prepay"
     t.integer  "fee"
-    t.decimal  "min_order",     precision: 8, scale: 2
-    t.string   "source"
+    t.decimal  "min_order",    precision: 8, scale: 2
     t.integer  "serial"
     t.integer  "status"
     t.integer  "user_id"
@@ -71,8 +70,10 @@ ActiveRecord::Schema.define(version: 20140601103852) do
     t.datetime "updated_at"
     t.text     "condition"
     t.integer  "duration"
-    t.integer  "delivery_time"
     t.datetime "start_time"
+    t.integer  "min_delivery"
+    t.integer  "max_delivery"
+    t.text     "source"
   end
 
   add_index "lots", ["user_id"], name: "index_lots_on_user_id"
