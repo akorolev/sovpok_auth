@@ -1,6 +1,6 @@
 <ul class="small-block-grid-3 medium-block-grid-4 large-block-grid-6">
   <% @lot_products.each do |prod| %>
-      <li style="position: relative; width: 320px; height: 500px;" >
+      <li style="   position: relative; width: 320px; height: 500px;" >
         <ul class="pricing-table">
           <li class="title" style="height: 62px;"><%= prod.title %></li>
           <li class="price"><%= number_to_currency(prod.price, :unit => '$')%></li>

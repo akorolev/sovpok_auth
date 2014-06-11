@@ -1,7 +1,8 @@
 class LotsController < ApplicationController
-  before_action :set_lot, only: [:show, :edit, :update, :destroy, :populate, :start_lot]
+  before_action :set_lot, only: [:show, :edit, :update, :destroy, :populate, :change_status]
   # TODO User checks
-  # TODO Lot
+  # TODO PUT in change_status BUNCH OF CHECKS AND CONDITION
+  # TODO Lot manage for a user not for all
 
   # GET /lots
   # GET /lots.json
@@ -51,15 +52,16 @@ class LotsController < ApplicationController
       end
     end
   end
-  def start_lot
-    @lot.status = 1
+  def change_status
+    @lot.status = params[:status]
     respond_to do |format|
       if @lot.save
-        format.html { redirect_to controller: 'lots' , action: 'populate', id: @lot.id, notice: 'Lot was successfully started.' }
-        format.json { render action: 'populate', status: :created, location: @lot }
+        flash[:notice] = 'Lot was successfully changed.'
+        format.html { redirect_to controller: 'lots' , action: 'populate', id: @lot.id }
       end
     end
   end
+
 
   # DELETE /lots/1
   # DELETE /lots/1.json
@@ -74,6 +76,11 @@ class LotsController < ApplicationController
   def populate
     @lot_products = Product.where(lot_id: @lot.id).where.not(status: nil)
   end
+
+  def manage
+    @lots = Lot.all
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,3 +1,4 @@
+#TODO Add counter of MBs per user
 class ProductImagesController < ApplicationController
   before_action :set_product_image, only: [:show, :edit, :update, :destroy]
 

@@ -1,18 +1,4 @@
-<!--TODO Control lot start better  -->
-<!--TODO Move to CSS -->
-
-<% if params[:notice] %>
-<div data-alert class="alert-box success radius" style="position: absolute;  background-color: rgba(0,0,0,0.65);
-        height: 45px;
-        width: 415px;
-        color: #FFF;
-        top: 2px;
-        right: 0px;
-        z-index: 1;">
-<%= params[:notice] %>
-<a href="#" class="close">&times;</a>
-</div>
-<% end %>
+<!--TODO Move styles to CSS -->
 
 <div class="row">
   <h1> <%= @lot.title %></h1>
@@ -49,15 +35,23 @@
         <td><%= @lot_products.count %> </td>
       </tr>
     </table>
-
+    <div style="float: left; width: auto;">
     <%= link_to({controller: 'lots', action: "edit", id: @lot.id}, {class: "button round secondary"}) do %>
         <%=fa_icon("edit lg")%> Edit lot
     <% end %>
+    </div>
 
-    <% if @lot_products.count > 0%>
-        <%= link_to({controller: 'lots', action: "start_lot", id: @lot.id, status: "1"}, {class: "button round success"}) do %>
-            <%=fa_icon("rocket lg")%> Start lot!
+    <% if @lot_products.count > 0 %>
+        <% if @lot.status == 1 %>
+            <%= button_to({controller: 'lots', action: 'change_status', method: :post, id: @lot.id, status: "0"}, {class: "button round alert"}) do %>
+                <%=fa_icon("flag lg")%> Stop lot!
+            <% end %>
+        <% else %>
+            <%= button_to({controller: 'lots', action: "change_status", method: :post, id: @lot.id, status: "1"}, {class: "button round success"}) do %>
+                <%=fa_icon("rocket lg")%> Start lot!
+            <% end %>
         <% end %>
+
     <% end%>
 
   </div>
