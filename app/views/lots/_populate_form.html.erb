@@ -1,6 +1,6 @@
 <ul class="small-block-grid-3 medium-block-grid-4 large-block-grid-6">
   <% @lot_products.each do |prod| %>
-      <li style="   position: relative; width: 320px; height: 500px;" >
+      <li style=" position: relative; height: 500px;" >
         <ul class="pricing-table">
           <li class="title" style="height: 62px;"><%= prod.title %></li>
           <li class="price"><%= number_to_currency(prod.price, :unit => '$')%></li>
@@ -10,8 +10,9 @@
             </div>
           </li>
 
-          <li class="cta-button">
-            <ul class="button-group radius">
+          <li class="cta-button" style="padding-left: 1px; padding-right: 1px">
+            <div style="display: table; margin: 0 auto; ">
+            <ul class="button-group radius" >
               <li>
                 <%=link_to({controller: 'products', action: "edit", id: prod.id}, {class: "button secondary  tiny"}) do %>
                     <i class="fa fa-edit fa-lg"></i>
@@ -30,6 +31,7 @@
                 <% end %>
               </li>
             </ul>
+            </div>
           </li>
         </ul>
       </li>
