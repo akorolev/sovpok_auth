@@ -32,17 +32,3 @@ $("[data-match-height]").each(function() {
   childrenCols.css('min-height', tallestChild);
 
 });
-
-// TODO remove datepicker check other JSs
-$(function() {
-  $('.date_picker').datepicker();
-});
-
-/*$('.orbit').slick({
-    dots: true,
-    infinite: false,
-    speed: 300,
-    slidesToShow: 5,
-    slidesToScroll: 1
-});
-*/
