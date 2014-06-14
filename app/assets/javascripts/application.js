@@ -12,14 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.datepicker
 //= require jquery-fileupload
-
+//= require third_party/owl.carousel
 // Note: Foundation 5 won't work with turbolinks
 //= require foundation
 //= require_tree .
 $(function() {
-  $(document).foundation();
+    $(document).foundation();
 });
 
 $("[data-match-height]").each(function() {
@@ -32,3 +31,20 @@ $("[data-match-height]").each(function() {
   childrenCols.css('min-height', tallestChild);
 
 });
+// TODO Move to lots
+$(document).ready(function($) {
+    $(".owl-carousel").owlCarousel({
+        itemsCustom : [
+            [0, 1],
+            [450, 2],
+            [600, 2],
+            [700, 3],
+            [1000, 4],
+            [1200, 5],
+            [1400, 5],
+            [1600, 6]
+        ],
+        navigation : true
+    });
+});
+

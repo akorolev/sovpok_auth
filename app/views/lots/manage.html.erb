@@ -1,11 +1,14 @@
+
+
 <% @lots.each do |lot| %>
+    <div class="owl-carousel">
+      <% lot.products.each do |product| %>
+          <%= image_tag product.product_images.first.photo.url(:medium)%>
+      <% end %>
+    </div>
+
     <fieldset style="position: relative; height: 160">
       <legend> <%= lot.title %> </legend>
-      <% lot.products.each do |product| %>
-        <div class="slick">
-          <%= image_tag product.product_images.first.photo.url(:thumb)%>
-        </div>
-      <% end %>
 
 
       <div class="row" style="position: absolute; bottom:0px; left: 0px; background: lavenderblush">
