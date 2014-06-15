@@ -31,19 +31,23 @@ $("[data-match-height]").each(function() {
   childrenCols.css('min-height', tallestChild);
 
 });
-// TODO Move to lots
+// TODO Move to lots ?
+// TODO add lazy load !
 $(document).ready(function($) {
     $(".owl-carousel").owlCarousel({
         itemsCustom : [
-            [0, 1],
-            [450, 2],
-            [600, 2],
-            [700, 3],
-            [1000, 4],
+            [0, 3],
+            [760, 3],
+            [980, 4],
             [1200, 5],
-            [1400, 5],
-            [1600, 6]
+            [1420, 6],
+            [1540, 7],
+            [1760, 8]
         ],
+        slideSpeed : 100,
+        paginationSpeed: 100,
+        rewindSpeed: 500,
+        paginationNumbers: true,
         navigation : true
     });
 });
