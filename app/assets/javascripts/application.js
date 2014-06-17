@@ -36,13 +36,13 @@ $("[data-match-height]").each(function() {
 $(document).ready(function($) {
     $(".owl-carousel").owlCarousel({
         itemsCustom : [
-            [0, 3],
-            [760, 3],
-            [980, 4],
-            [1200, 5],
-            [1420, 6],
-            [1540, 7],
-            [1760, 8]
+            [0, 2],
+            [760, 2],
+            [980, 2],
+            [1200, 3],
+            [1420, 4],
+            [1540, 5],
+            [1760, 6]
         ],
         slideSpeed : 100,
         paginationSpeed: 100,
