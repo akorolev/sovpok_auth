@@ -5,12 +5,10 @@
 </div>
 <div class="row">
   <div class="small-8 columns">
-    <p> Description: <br>
-      <%= @lot.description %>
-    </p>
-    <p> Conditions: <br>
-      <%= @lot.condition %>
-    </p>
+    <h3> Description: </h3>
+      <%= markdown(@lot.description).html_safe %>
+    <h3> Conditions: </h3>
+      <%= markdown(@lot.condition).html_safe %>
   </div>
   <div class="small-4 columns">
     <table>

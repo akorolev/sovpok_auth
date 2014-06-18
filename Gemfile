@@ -23,6 +23,7 @@ gem 'jbuilder'
 gem 'friendly_id'
 gem 'font-awesome-rails'
 gem 'jquery-fileupload-rails'
+gem 'redcarpet'
 
 group :development do
   gem 'better_errors'

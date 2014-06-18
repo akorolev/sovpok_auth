@@ -15,4 +15,9 @@ module ApplicationHelper
   def time_format(datetime)
     a = datetime.strftime('%d.%m.%Y %H:%M') unless datetime.blank?
   end
+
+  def markdown(content)
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, space_after_headers: true, fenced_code_blocks: true)
+    @markdown.render(content)
+  end
 end
