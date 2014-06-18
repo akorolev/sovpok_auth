@@ -8,7 +8,7 @@
   <div class="form-inputs">
     <%= f.input :title, required: true, placeholder: "Maximum title size is 50 characters",  input_html: {:maxlength => 50} %>
     <%= f.input :description, placeholder: "Short description for a whole lot", input_html: {rows: 4 } %>
-    <%= f.input :price, required: true, prefix: "$", wrapper: :label_prefix_input  %>
+    <%= f.input :price, as: :string, required: true, prefix: "$", wrapper: :label_prefix_input  %>
     <%= content_tag :div, class: "row" do %>
         <%= content_tag :div, class: "small-2 columns" do %>
             <% category_label_class = @product.errors[:category_id].empty? ? "" : "error" %>
@@ -37,7 +37,7 @@
                 <%= f.label (i == 1) ? :shipping : " " %>
             <% end %>
             <%= content_tag :div, class: "small-2 columns" do %>
-                <%= f.input "postage_val#{i}", prefix: "$", wrapper: :prefix_input %>
+                <%= f.input "postage_val#{i}", prefix: "$", as: :string, wrapper: :prefix_input %>
             <% end %>
             <%= content_tag :div, class: "small-8	columns" do %>
                 <%= f.input "postage_info#{i}", placeholder: "Details", wrapper: :no_divs_labels %>

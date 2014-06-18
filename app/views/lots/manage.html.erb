@@ -2,25 +2,45 @@
 
 <% @lots.each do |lot| %>
 
-    <div style="position: relative; height: 360px; border: solid #ffffff">
+  <div style="border: solid #ffffff">
 
-      <div class="row" style="position: absolute; bottom:0px; left: 0px;" >
-        <div class="small-4  columns">
-          <strong> <%= lot.title %> </strong>
+      <div class="row" >
+        <div class="medium-3  columns">
+          <h3> <%= lot.title %> </h3>
           <br>
           Status : <%= lot.status %>
           <br>
           Products : <%= lot.products.count %>
+          <br>
+          <%= link_to({controller: 'lots', action: "edit", id: lot.id}, {class: "button round secondary"}) do %>
+              <%=fa_icon("edit lg")%> Edit lot
+          <% end %>
+          <%= link_to({controller: 'lots', action: "populate", id: lot.id}, {class: "button round secondary"}) do %>
+              <%=fa_icon("gift lg")%> Manage products
+          <% end %>
+
         </div>
-        <div class="small-8  columns">
+        <div class="medium-9  columns">
           <div class="owl-carousel">
             <% lot.products.each do |product| %>
-                <%= image_tag product.product_images.first.photo.url(:medium)%>
+                <div class="item">
+                  <%=link_to({controller: 'products', action: "edit", id: product.id}) do %>
+                  <ul class="pricing-table">
+                    <li class="title" style="height: 62px;"><%= product.title %></li>
+                    <li class="price"><%= number_to_currency(product.price, :unit => '$')%></li>
+                    <li class="bullet-item">
+                      <div style="height: 200px">
+                        <%= image_tag product.product_images.first.photo.url(:medium) %>
+                      </div>
+                    </li>
+                 </ul>
+                 <% end %>
+              </div>
             <% end %>
-          </div>
 
         </div>
 
       </div>
     </div>
+  </div>
 <% end %>

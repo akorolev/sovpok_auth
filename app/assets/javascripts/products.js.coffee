@@ -99,6 +99,10 @@ $("#submit_product").click ->
   document.forms[0].submit()
   return
 
+$(document).ready ->
+  $("#pickup").toggle $('#show_pickup').prop('checked')
+  return
+
 $ ->
   $('#show_pickup').on "change", ->
     $("#pickup").toggle @checked
