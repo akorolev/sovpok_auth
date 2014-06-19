@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :product_images, :allow_destroy => true
 
   validates :title, presence: true, length: { maximum: 50 }
-  validates :description, length: { maximum: 1000 }
+  validates :description, length: { maximum: 6000 }
   validates :price, presence: true, numericality: true
   validates :postage_val1, numericality: true, allow_blank: true
   validates :postage_info1, length: { maximum: 50 }, allow_blank: true

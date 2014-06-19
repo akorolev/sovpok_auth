@@ -11,19 +11,19 @@ class ProductImage < ActiveRecord::Base
     val = URI.parse(url)
     self.photo = val
   rescue
-    puts "*********************************** URI PARSE!!!"
+    errors.add("photo", "Please provide correct image link")
   end
 
   def to_jq_upload
     {
-        "id" => read_attribute(:id),
-        "name" => read_attribute(:photo_file_name),
-        "size" => read_attribute(:photo_file_size),
-        "top" => read_attribute(:top),
-        "url" => photo.url(:original),
-        "delete_url" => product_image_path(self),
-        "delete_type" => "DELETE",
-        "thumbnail_url" => photo.url(:medium),
+        id: read_attribute(:id),
+        name: read_attribute(:photo_file_name),
+        size: read_attribute(:photo_file_size),
+        top: read_attribute(:top),
+        url: photo.url(:original),
+        delete_url: product_image_path(self),
+        delete_type: "DELETE",
+        thumbnail_url: photo.url(:medium),
     }
   end
 

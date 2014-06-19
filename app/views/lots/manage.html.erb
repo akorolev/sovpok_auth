@@ -2,7 +2,7 @@
 
 <% @lots.each do |lot| %>
 
-  <div style="border: solid #ffffff">
+  <div style="border: solid #ffffff; border-radius: 25px">
 
       <div class="row" >
         <div class="medium-3  columns">
@@ -30,7 +30,7 @@
                     <li class="price"><%= number_to_currency(product.price, :unit => '$')%></li>
                     <li class="bullet-item">
                       <div style="height: 200px">
-                        <%= image_tag product.product_images.first.photo.url(:medium) %>
+                        <%= image_tag "", "data-src" => product.product_images.first.photo.url(:medium), :class => 'lazyOwl' %>
                       </div>
                     </li>
                  </ul>

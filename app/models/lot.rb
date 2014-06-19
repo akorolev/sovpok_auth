@@ -3,13 +3,13 @@ class Lot < ActiveRecord::Base
   has_many :products
 
   validates :title, presence: true, length: { maximum: 50 }
-  validates :description, presence: true, length: { minimum: 15, maximum: 1000 }
+  validates :description, presence: true, length: { maximum: 5000 }
   validates :duration, presence: true, numericality: { only_integer: true }
   validates :prepay, numericality: { only_integer: true }, allow_blank: true
   validates :fee, numericality: { only_integer: true }, allow_blank: true
   validates :min_order, numericality: true, allow_blank: true
-  validates :source, length: { maximum: 80 }, allow_blank: true
-  validates :condition, presence: true, length: { minimum: 15, maximum: 1000 }
+  validates :source, length: { maximum: 1000 }, allow_blank: true
+  validates :condition, presence: true, length: { minimum: 15, maximum: 5000 }
 #  validates :terms_of_service, acceptance: true
   validate do
     check_delivery_time

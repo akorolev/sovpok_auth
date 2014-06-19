@@ -17,12 +17,19 @@ url_submit_success = undefined
 
 url_submit_success = (data) ->
   content = undefined
+  parent_div = undefined
   fu = undefined
   template = undefined
   content = $(data).find("#url")
   $("#result").empty().append content
-  $("#url_button").attr "disabled", false
+  parent_div = $("#upload_url").parent()
+
+  $("#url_button").prop "disabled", false
   $("#upload_url").val ""
+  $("#upload_url").prop "placeholder", "Copy image URL here"
+  $("#upload_url").prop "readonly", false
+  parent_div.find( ".error").remove()
+
   fu = $("#fileupload").data("blueimpFileupload")
   template = fu._renderDownload([data.files[0]]).appendTo($("#fileupload .files"))
   fu._reflow = fu._transition and template.length and template[0].offsetWidth
@@ -33,11 +40,16 @@ url_submit_error = (data) ->
   obj = undefined
   parent_div = undefined
   val = undefined
-  $("#url_button").attr "disabled", false
+  $("#url_button").prop "disabled", false
+  $("#upload_url").val ""
+  $("#upload_url").prop "placeholder", "Copy image URL here"
+  $("#upload_url").prop "readonly", false
+
   obj = $.parseJSON(data.responseText)
   parent_div = $("#upload_url").parent()
   val = "Image " + obj.photo.toString()
-  parent_div.append("<span class='error'>"+val+"</span>");
+  parent_div.find( ".error").remove()
+  parent_div.append("<span class='error'>"+val+"</span>")
   $("#upload_url").val ""
 
   return
@@ -77,8 +89,10 @@ $ ->
   $("#url_button").click ->
     val = undefined
     val = $("#upload_url").val()
-    $("#url_button").attr "disabled", true
-    $("#upload_url").val "Sending...."
+    $("#url_button").prop "disabled", true
+    $("#upload_url").val ""
+    $("#upload_url").prop "placeholder", "Sending...."
+    $("#upload_url").prop "readonly", true
     $.ajax
       type: "POST"
       url: "product_images/create_from_uri"

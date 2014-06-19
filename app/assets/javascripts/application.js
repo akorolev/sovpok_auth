@@ -20,7 +20,7 @@
 $(function() {
     $(document).foundation();
 });
-
+// TODO REMOVE ?
 $("[data-match-height]").each(function() {
 
   var parentRow = $(this),
@@ -31,19 +31,20 @@ $("[data-match-height]").each(function() {
   childrenCols.css('min-height', tallestChild);
 
 });
-// TODO Move to lots ?
-// TODO add lazy load !
+
 $(document).ready(function($) {
     $(".owl-carousel").owlCarousel({
         itemsCustom : [
             [0, 2],
-            [760, 2],
-            [980, 2],
-            [1200, 3],
-            [1420, 4],
-            [1540, 5],
-            [1760, 6]
+            [840, 3],
+            [1120, 4],
+            [1400, 5],
+            [1680, 6],
+            [1960, 7],
+            [2240, 8],
+            [2800, 9]
         ],
+        lazyLoad : true,
         slideSpeed : 100,
         paginationSpeed: 100,
         rewindSpeed: 500,
