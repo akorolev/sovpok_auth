@@ -73,8 +73,8 @@
 
   <%= content_tag :div, class: "row" do %>
     <div class="fileUpload button">
+      <%= f.file_field :photo, multiple: true, class: 'fileField' %>
       <%= fa_icon("camera lg") %><span> Upload local images </span>
-      <%= f.file_field :photo, multiple: true, class: "fileField" %>
     </div>
   <% end %>
   <%= content_tag :div, class: "row" do %>
