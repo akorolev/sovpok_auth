@@ -3,6 +3,7 @@ class LotsController < ApplicationController
   # TODO User checks
   # TODO PUT in change_status BUNCH OF CHECKS AND CONDITION
   # TODO Lot manage for a user not for all
+  # TODO Delete products too.
 
   # GET /lots
   # GET /lots.json

@@ -16,8 +16,13 @@
               <%=fa_icon("edit lg")%> Edit lot
           <% end %>
           <%= link_to({controller: 'lots', action: "populate", id: lot.id}, {class: "button round secondary"}) do %>
-              <%=fa_icon("gift lg")%> Manage products
+              <%=fa_icon("gift lg")%> Edit products
           <% end %>
+          <%=link_to(lot, method: :delete, data: { confirm: 'Lot description and all products will be deleted! Are you sure?' }, class: "button round secondary") do %>
+              <i class="fa fa-trash-o fa-lg"></i>
+              <span> Delete lot</span>
+          <% end %>
+
 
         </div>
         <div class="medium-9  columns">
