@@ -3,7 +3,7 @@ class LotsController < ApplicationController
   # TODO User checks
   # TODO PUT in change_status BUNCH OF CHECKS AND CONDITION
   # TODO Lot manage for a user not for all
-  # TODO Delete products too.
+  # TODO Check lot status on Delete
 
   # GET /lots
   # GET /lots.json
@@ -68,8 +68,10 @@ class LotsController < ApplicationController
   # DELETE /lots/1.json
   def destroy
     @lot.destroy
+    flash[:notice] = 'Lot was successfully deleted.'
+
     respond_to do |format|
-      format.html { redirect_to lots_url }
+      format.html { redirect_to controller: 'lots' , action: 'manage' }
       format.json { head :no_content }
     end
   end

@@ -1,6 +1,7 @@
 class Lot < ActiveRecord::Base
   belongs_to :user
-  has_many :products
+  has_many :products, dependent: :destroy
+  enum status: [:forming, :requests_collection, :prepay_collection, :requests_up_collection, :order_confirmation, :order_delivery, :feedback_collection, :closed, :suspended]
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, presence: true, length: { maximum: 5000 }

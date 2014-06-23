@@ -40,12 +40,12 @@
     </div>
 
     <% if @lot_products.count > 0 %>
-        <% if @lot.status == 1 %>
-            <%= button_to({controller: 'lots', action: 'change_status', method: :post, id: @lot.id, status: "0"}, {class: "button round alert"}) do %>
+        <% if @lot.requests_collection? %>
+            <%= button_to({controller: 'lots', action: 'change_status', method: :post, id: @lot.id, status: "forming"}, {class: "button round alert"}) do %>
                 <%=fa_icon("flag lg")%> Stop lot!
             <% end %>
         <% else %>
-            <%= button_to({controller: 'lots', action: "change_status", method: :post, id: @lot.id, status: "1"}, {class: "button round success"}) do %>
+            <%= button_to({controller: 'lots', action: "change_status", method: :post, id: @lot.id, status: "requests_collection"}, {class: "button round success"}) do %>
                 <%=fa_icon("rocket lg")%> Start lot!
             <% end %>
         <% end %>
