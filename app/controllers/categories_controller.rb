@@ -1,7 +1,9 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:edit, :update, :destroy]
-#  load_and_authorize_resource :find_by => :slug
-#  skip_authorize_resource only: [:index, :show]
+  load_and_authorize_resource only: [:create, :new, :edit, :update, :destroy]
+  skip_load_resource only: [:new, :create]
+
+  # skip_authorize_resource only: [:index, :show]
 
   LVL_MASK=[0xfc000000, 0x3f00000, 0xfc000, 0x3f00, 0xfc, 0x3]
   # GET /categories
@@ -13,16 +15,14 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-     @path_elements = params[:category].split('/') # gives an array of folder names
+     @path_elements = params[:id].split('/') # gives an array of folder names
      @parent_category = Category.friendly.find(@path_elements.last)
      @categories = Category.where(parent_id: @parent_category.id)
      get_category_id(@parent_category.id)
   end
-
   # GET /categories/new
   def new
     @category = Category.new(category_params)
-    authorize! :new, @category, :message => 'Not authorized as an administrator.'
     session[:return_to] ||= request.referer
   end
 
@@ -34,7 +34,6 @@ class CategoriesController < ApplicationController
   # POST /categories.json
   def create
     @category = Category.new(category_params)
-    authorize! :create, @category, :message => 'Not authorized as an administrator.'
     parent = Category.find_by(id: category_params[:parent_id])
     
     @category.id = get_category_id(category_params[:parent_id])
@@ -43,7 +42,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        unless (parent.nil?)
+        unless parent.nil?
           parent.has_children = 1
           parent.save
         end
@@ -59,7 +58,6 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
-    authorize! :update, @category, :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to @category, notice: 'Category was successfully updated.' }
@@ -74,7 +72,6 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
-    authorize! :destroy, @category, :message => 'Not authorized as an administrator.'
     rec = Category.find_by(parent_id: @category.id)
     respond_to do |format|
       if rec.nil?
@@ -102,7 +99,7 @@ class CategoriesController < ApplicationController
       level = get_category_level(p_id)
       mask = LVL_MASK[level]
       add = 1
-      while ((add & mask)==0) do add = add << 1 end
+      while (add & mask)==0 do add = add << 1 end
       last_rec = Category.where(parent_id: p_id).order(:id).last
       last_rec.nil? ? add + p_id.to_i: last_rec.id + add
     end

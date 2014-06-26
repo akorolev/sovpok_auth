@@ -1,9 +1,9 @@
 class LotsController < ApplicationController
   before_action :set_lot, only: [:show, :edit, :update, :destroy, :populate, :change_status]
-  # TODO User checks
-  # TODO PUT in change_status BUNCH OF CHECKS AND CONDITION
+  load_and_authorize_resource only: [:create, :new, :edit, :update, :destroy, :change_status, :populate, :manage]
+  # TODO add to change_status BUNCH OF CHECKS AND CONDITION
   # TODO Lot manage for a user not for all
-  # TODO Check lot status on Delete
+  # TODO Check lot status on destroy
 
   # GET /lots
   # GET /lots.json

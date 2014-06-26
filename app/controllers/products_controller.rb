@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [ :show, :edit, :update, :destroy]
   before_action :save_location, only: [:new, :edit, :destroy]
+  load_and_authorize_resource only: [:create, :new, :edit, :update, :destroy, :update_top]
   # GET /products
   # GET /products.json
   def index
@@ -15,7 +16,7 @@ class ProductsController < ApplicationController
   # GET /products/new
   # TODO Check user ID of lot_id!
   def new
-    @product = Product.new(lot_id: params[:lot_id]) if params[:lot_id]
+    @product = Product.new(lot_id: params[:lot_id], user_id: current_user.id) if params[:lot_id]
     if params[:copy_product_id]
       @product = Product.find(params[:copy_product_id]).dup
       @product.title = "[COPY] " + @product.title.to_s

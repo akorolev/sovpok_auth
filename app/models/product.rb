@@ -32,13 +32,13 @@ class Product < ActiveRecord::Base
       ret_val = [""]
       Category.where(level: idx).each do |cat|
         name = cat.name
-        select_attributes = {class: cat.parent_id.to_s}
-        if (cat.has_children.to_i == 0)
-          select_attributes[:class] << " last"
+        select_attributes = {"class" => cat.parent_id.to_s}
+        if cat.has_children.to_i == 0
+          select_attributes["class"] << " last"
         else
           name += " ->"
         end
-        select_attributes[:selected] = "selected" if cur_category.between?(cat.id, cat.id + CategoriesController::LVL_MASK[idx] - 1)
+        select_attributes["selected"] = "selected" if cur_category.between?(cat.id, cat.id + CategoriesController::LVL_MASK[idx] - 1)
         ret_val = ret_val << [name, cat.id, select_attributes]
       end
       ret_val

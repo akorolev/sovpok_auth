@@ -1,6 +1,9 @@
 #TODO Add counter of MBs per user
 class ProductImagesController < ApplicationController
   before_action :set_product_image, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource only: [:create, :new, :edit, :update, :destroy, :create_from_uri]
+  skip_load_resource only: [:create]
+
 
   # GET /product_images
   # GET /product_images.json

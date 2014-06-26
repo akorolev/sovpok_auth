@@ -6,7 +6,7 @@ SovpokAuth::Application.routes.draw do
       post :create_from_uri
     end
   end
-  post "products/product_images" => "product_images#create"
+  #post "products/*product/product_images/create" => "product_images#create"
   post "products/*product/product_images/create_from_uri" => "product_images#create_from_uri"
 
   resources :lots do
@@ -21,7 +21,7 @@ SovpokAuth::Application.routes.draw do
 
   resources :addresses
   resources :categories, :except => [:show]
-  get "/categories/*category" => "categories#show"
+  get "/categories/*id" => "categories#show"
 
   root :to => "home#index"
   devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions",:omniauth_callbacks => "omniauth_callbacks"}
